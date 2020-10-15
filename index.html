@@ -1,0 +1,3149 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <script>
+            function ready() {
+                var x = document.createElement("div")
+                x.setAttribute("id", "fd_customiser")
+                document.body.appendChild(x)
+            }
+
+            document.addEventListener("DOMContentLoaded", ready)
+        </script>
+
+        <script src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+        <script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+        <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+
+        <script src="./dist/development.js" type="text/babel"></script>
+
+        <style>
+            #fd_customiser {
+                color: black !important;
+                position: fixed;
+                top: 200px;
+                right: 0;
+                z-index: 99999999;
+                background: #e8e8e8;
+                padding: 40px 20px;
+                border: 4px solid black;
+            }
+        </style>
+
+        <style>
+            /* ====================================
+// ====================================
+// Fonts
+// ====================================
+// ================================= */
+            @import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;600&family=Libre+Baskerville:wght@400;700&display=swap");
+
+            /* ====================================
+// ====================================
+// Variables
+// ====================================
+// ================================= */
+            :root {
+                --main-bg-color: #006341;
+                --main-bg-color-alternate: #fff; /* SECTIONS | Order Online hover text menu | Hero order online button text | Navigation order online button text */
+                --second-bg-color: #f7f7f7; /* SECTIONS | About */
+                --heading-font: "Libre Baskerville"; /* Used for main headings - SECTIONS | About */
+                --main-font: "Josefin Sans"; /* Used for main body text */
+                --heading-font-color: #006341; /* SECTIONS | About */
+                --body-font-color: #595959; /* SECTIONS | Menu non active */
+                --heading-font-color-inverse: #006341; /* SECTIONS | Opening Hours | Reservations | Contact */
+                --body-font-color-inverse: #595959; /* SECTIONS | Opening Hours | Reservations | Contact */
+            }
+
+            /* ====================================
+// ====================================
+// Headings
+// ====================================
+// ================================= */
+            h2.section-title,
+            h2.heading,
+            .timetable h2 .opening-hours,
+            section.menu h3,
+            .testimonials h2,
+            .container h1 {
+                font-family: var(--heading-font), serif !important;
+            }
+
+            #aboutSection div h2.heading {
+                text-align: left;
+                margin-bottom: 20px;
+                font-size: 26px;
+                color: var(--heading-font-color) !important;
+            }
+
+            h2.section-title,
+            .gallery h2,
+            .testimonials .container h2 {
+                font-weight: 700 !important;
+                font-size: 32px !important;
+                color: var(--heading-font-color) !important;
+            }
+
+            section.menu div h3 {
+                font-weight: 700;
+                font-size: 26px;
+                color: var(--heading-font-color) !important;
+            }
+
+            /* ====================================
+// ====================================
+// Body
+// ====================================
+// ================================= */
+            body {
+                padding-top: 120px;
+            }
+
+            body,
+            p.text {
+                line-height: 1.6;
+                font-size: 16px;
+                color: var(--body-font-color) !important;
+            }
+
+            body,
+            p.text,
+            .section-subtitle,
+            .slide-content p,
+            .button.menu,
+            .slide-content h1,
+            #header .menu-item a,
+            .testimonials .item p,
+            .contact input[type="submit"],
+            section.reservations p {
+                font-family: var(--main-font), serif !important;
+            }
+
+            .section-subtitle,
+            .slide-content h1 {
+                text-transform: uppercase;
+                letter-spacing: 1.5px;
+            }
+
+            .container h1 {
+                font-size: 4rem;
+                color: var(--heading-font-color) !important;
+            }
+
+            h1.section-title {
+                font-size: 4rem !important;
+            }
+
+            .about h2.heading {
+                text-align: left;
+                margin-bottom: 20px;
+                font-size: 26px;
+            }
+
+            /* ====================================
+// ====================================
+// forms
+// ====================================
+// ================================= */
+            ::placeholder {
+                color: var(--body-font-color) !important;
+                font-family: var(--main-font), serif !important;
+            }
+
+            textarea:focus,
+            input:focus,
+            input[type]:focus,
+            .uneditable-input:focus {
+                box-shadow: none !important;
+                border-color: var(--main-bg-color) !important;
+            }
+
+            .field-validation-error {
+                color: #c52626 !important;
+                font-weight: 600 !important;
+            }
+
+            /* ====================================
+// ====================================
+// Navigation
+// ====================================
+// ================================= */
+            #header .menu-item a {
+                text-transform: capitalize;
+                font-size: 16px;
+                letter-spacing: 1.5px;
+            }
+
+            #header .menu-item.current a {
+                font-weight: 600 !important;
+            }
+
+            #header .navbar-nav {
+                margin: 15px 0;
+                -webkit-transition: all 0.3s ease-in-out;
+                -o-transition: all 0.3s ease-in-out;
+                transition: all 0.3s ease-in-out;
+            }
+
+            #header.overflow .navbar-nav {
+                margin: 0;
+            }
+
+            #header.overflow.fixed .navbar-brand.normal {
+                display: block !important;
+            }
+
+            #header.overflow.fixed .navbar-brand.mini {
+                display: none !important;
+            }
+
+            #header #nav li:last-child a {
+                border: 1px solid var(--main-bg-color);
+                padding: 15px 30px 12px;
+                color: var(--main-bg-color) !important;
+                -webkit-transition: all 0.15s ease-in-out !important;
+                -o-transition: all 0.15s ease-in-out !important;
+                transition: all 0.15s ease-in-out !important;
+            }
+
+            #header #nav li:last-child:hover a {
+                border: 1px solid var(--main-bg-color);
+                background-color: var(--main-bg-color);
+                color: var(--main-bg-color-alternate) !important;
+            }
+
+            #header #nav li:last-child {
+                padding-right: 0 !important;
+            }
+
+            .navbar-toggle {
+                color: var(--main-bg-color) !important;
+            }
+
+            #flipdish-menu .menu__basket.fixed {
+                position: fixed !important;
+                top: 90px !important;
+                width: 376.656px !important;
+            }
+
+            /* ====================================
+// ====================================
+// Buttons
+// ====================================
+// ================================= */
+            .button.menu,
+            .contact input[type="submit"] {
+                letter-spacing: 1.5px;
+                font-weight: 600 !important;
+                border-color: var(--main-bg-color) !important;
+                color: var(--main-bg-color) !important;
+            }
+
+            .button.menu:hover,
+            .contact input[type="submit"]:hover {
+                background-color: var(--main-bg-color) !important;
+                color: var(--main-bg-color-alternate) !important;
+            }
+
+            /* ====================================
+// ====================================
+// Header
+// ====================================
+// ================================= */
+            #header {
+                background: white !important;
+                top: 0 !important;
+                z-index: 9999 !important;
+                height: 120px !important;
+                -webkit-transition: all 0.5s ease-in-out;
+                -o-transition: all 0.5s ease-in-out;
+                transition: all 0.5s ease-in-out;
+            }
+
+            #header .menu-item a {
+                color: var(--body-font-color) !important;
+            }
+
+            #header .menu-item.current a,
+            #header .menu-item a:hover {
+                color: var(--main-bg-color) !important;
+            }
+
+            #header .logo_elixir {
+                height: 75px !important;
+                -webkit-transition: all 0.5s ease-in-out !important;
+                -o-transition: all 0.5s ease-in-out !important;
+                transition: all 0.5s ease-in-out !important;
+                background-position: center center !important;
+            }
+
+            #header.overflow .logo_elixir {
+                height: 50px !important;
+            }
+
+            /* ====================================
+// ====================================
+// Carousel
+// ====================================
+// ================================= */
+            #home-slider {
+                min-height: 450px !important;
+                height: 450px !important;
+                position: relative !important;
+            }
+
+            #home-slider .owl-carousel .item {
+                height: 450px !important;
+            }
+
+            .logointro {
+                background-position: left !important;
+                display: inline-block !important;
+                max-width: 390px !important;
+            }
+
+            #home-slider .slide-content a {
+                display: block;
+                text-align: left;
+            }
+
+            .overlay {
+                display: none;
+            }
+
+            #home-slider .owl-carousel img {
+                width: 50% !important;
+                min-height: 450px !important;
+                height: 50vh !important;
+                object-fit: cover;
+                left: 50% !important;
+                padding-right: 100px;
+            }
+
+            .slide-content .slide-sep {
+                display: none;
+            }
+
+            .slide-content {
+                margin-left: 100px !important;
+            }
+
+            #owl-main-text {
+                height: auto;
+            }
+
+            #owl-main-text .item {
+                padding-bottom: 0;
+            }
+
+            .slide-content #owl-main-text a {
+                display: table-cell;
+            }
+
+            .slide-content h1 {
+                text-align: left !important;
+                color: var(--main-bg-color-alternate) !important;
+                text-shadow: none;
+                background-color: var(--main-bg-color);
+                font-size: 24px !important;
+                line-height: 24px !important;
+                padding: 10px 80px 5px 20px;
+                position: relative;
+                margin: 40px 0 !important;
+            }
+
+            .slide-content h1:after {
+                content: "";
+                width: 30px;
+                height: 30px;
+                background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white' width='30px' height='30px'%3E%3Cpath d='M0 0h24v24H0z' fill='none'/%3E%3Cpath d='M11 9H9V2H7v7H5V2H3v7c0 2.12 1.66 3.84 3.75 3.97V22h2.5v-9.03C11.34 12.84 13 11.12 13 9V2h-2v7zm5-3v8h2.5v8H21V2c-2.76 0-5 2.24-5 4z'/%3E%3C/svg%3E");
+                position: absolute;
+                right: 15px;
+                top: 5px;
+            }
+
+            .slide-content .restAddresses p {
+                text-align: left;
+                color: var(--body-font-color) !important;
+            }
+
+            .my-powerby {
+                padding-right: 105px;
+                font-size: 16px !important;
+                text-shadow: 0px 0px 4px #3d3d59ad;
+            }
+
+            #home-slider .mouse {
+                background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 194 87'%3E%3Cdefs%3E%3Cstyle%3E.cls-1%7Bfill:%23fff;%7D%3C/style%3E%3C/defs%3E%3Cg id='Layer_2' data-name='Layer 2'%3E%3Cg id='Layer_1-2' data-name='Layer 1'%3E%3Cpath d='M0,87C40,87,54,0,97,0s56,87,97,87' class='cls-1'%3E%3C/path%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+                background-repeat: no-repeat;
+                background-size: 90px;
+                width: 90px;
+                height: 90px;
+                left: 75%;
+                border: none;
+                bottom: -50px;
+            }
+
+            #home-slider .mouse span {
+                background-image: url("data:image/svg+xml,%3Csvg aria-hidden='true' focusable='false' data-prefix='fas' data-icon='arrow-down' role='img' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 512' class='svg-inline--fa fa-arrow-down fa-w-14'%3E%3Cpath fill='currentColor' d='M413.1 222.5l22.2 22.2c9.4 9.4 9.4 24.6 0 33.9L241 473c-9.4 9.4-24.6 9.4-33.9 0L12.7 278.6c-9.4-9.4-9.4-24.6 0-33.9l22.2-22.2c9.5-9.5 25-9.3 34.3.4L184 343.4V56c0-13.3 10.7-24 24-24h32c13.3 0 24 10.7 24 24v287.4l114.8-120.5c9.3-9.8 24.8-10 34.3-.4z' class=''%3E%3C/path%3E%3C/svg%3E");
+                background-repeat: no-repeat;
+                background-position: center center;
+                margin: 12px auto 0;
+                animation: bounce 1s;
+                animation-direction: alternate;
+                animation-timing-function: ease-in-out;
+                animation-iteration-count: infinite;
+            }
+
+            @-webkit-keyframes bounce {
+                0% {
+                    -webkit-transform: translateZ(0);
+                    transform: translateZ(0);
+                }
+
+                to {
+                    -webkit-transform: translate3d(0, 8px, 0);
+                    transform: translate3d(0, 8px, 0);
+                }
+            }
+
+            /* ====================================
+// ====================================
+// Section Spacing
+// ====================================
+// ================================= */
+            .section.about .jt_row,
+            .section.about,
+            section.menu {
+                padding-bottom: 100px !important;
+            }
+
+            .section.about .row:last-child {
+                padding-bottom: 0 !important;
+            }
+
+            .section {
+                padding-top: 100px !important;
+                margin-bottom: 0 !important;
+            }
+
+            .menu .jt_row {
+                padding-bottom: 0 !important;
+            }
+
+            .about .section-subtitle {
+                margin-bottom: 50px !important;
+                color: var(--body-font-color) !important;
+            }
+
+            /* ====================================
+// ====================================
+// Menu
+// ====================================
+// ================================= */
+            .menu {
+                min-height: auto !important;
+            }
+
+            section.menu ul li,
+            section.menu ul li .detail,
+            .menu span.price {
+                font-family: var(--main-font), serif !important;
+            }
+
+            section.menu ul li .detail {
+                color: var(--body-font-color) !important;
+            }
+
+            section.menu ul li,
+            .menu span.price {
+                font-weight: 600 !important;
+            }
+
+            .menu .price {
+                color: var(--main-bg-color) !important;
+            }
+
+            section.menu h3 {
+                padding-bottom: 10px;
+                border-bottom: 1px dashed #e2e6e8 !important;
+            }
+
+            /* ====================================
+// ====================================
+// Opening Hours
+// ====================================
+// ================================= */
+            .timetable {
+                background-image: none !important;
+                background-color: var(--second-bg-color) !important;
+                min-height: auto !important;
+            }
+
+            .timetable h2 .opening-hours {
+                font-weight: 700 !important;
+                font-size: 32px !important;
+                color: var(--heading-font-color-inverse) !important;
+            }
+
+            .timetable .days {
+                color: var(--body-font-color-inverse) !important;
+                font-style: normal !important;
+                font-size: 24px !important;
+                line-height: 24px !important;
+                margin-bottom: 5px !important;
+            }
+
+            .timetable .hours {
+                color: var(--body-font-color-inverse) !important;
+                font-size: 26px !important;
+                margin-bottom: 0 !important;
+                font-weight: 600 !important;
+            }
+
+            .timetable .container > div {
+                padding-bottom: 0;
+            }
+
+            #timetable.section.timetable {
+                min-height: auto;
+                padding: 50px 0 !important;
+                margin: 0 100px;
+            }
+
+            /* ====================================
+// ====================================
+// Gallery
+// ====================================
+// ================================= */
+            section.gallery {
+                background: none !important;
+                padding: 0 100px !important;
+            }
+
+            .gallery .jt_row {
+                padding-bottom: 0 !important;
+            }
+
+            .gallery .entry {
+                width: 33.33% !important;
+            }
+
+            /* ====================================
+// ====================================
+// Testimonials
+// ====================================
+// ================================= */
+            #testimonials {
+                padding: 100px 0 !important;
+            }
+
+            .testimonials {
+                background: none !important;
+                margin: 0 100px !important;
+                min-height: inherit !important;
+            }
+
+            .testimonials .jt_row {
+                padding-bottom: 0 !important;
+            }
+
+            .testimonials h2 {
+                text-align: center !important;
+            }
+
+            .testimonials h2:before,
+            .testimonials h2:after {
+                content: url(../Areas/AutoSites/elixircontent/elixirfull/images/header_decorator_light_gray.png) !important;
+                vertical-align: text-bottom;
+                margin: 14px;
+                width: auto !important;
+                height: auto !important;
+                position: relative !important;
+                left: inherit !important;
+                bottom: inherit !important;
+                background: none !important;
+            }
+
+            .testimonials .item p {
+                color: var(--body-font-color) !important;
+                text-align: center;
+            }
+
+            .testimonials
+                .testimonials.carousel-wrapper.with_pagination
+                .owl-controls
+                .owl-page.active
+                span,
+            .testimonials
+                .testimonials.carousel-wrapper.with_pagination
+                .owl-controls.clickable
+                .owl-page:hover
+                span {
+                border: 2px solid var(--main-bg-color) !important;
+                background: var(--main-bg-color) !important;
+            }
+
+            .testimonials
+                .testimonials.carousel-wrapper.with_pagination
+                .owl-theme
+                .owl-controls
+                .owl-page
+                span {
+                border: 2px solid var(--main-bg-color) !important;
+            }
+
+            /* ====================================
+// ====================================
+// Reservations
+// ====================================
+// ================================= */
+            .reservations {
+                margin: 100px 100px 50px !important;
+                background-color: var(--second-bg-color) !important;
+                color: var(--body-font-color-inverse) !important;
+            }
+
+            .reservations > div div.col-md-12:nth-child(2) {
+                display: none !important;
+            }
+
+            .reservations h2.section-title {
+                color: var(--heading-font-color-inverse) !important;
+            }
+
+            .reservations .jt_row {
+                padding-bottom: 0 !important;
+            }
+
+            .reservations input[type="submit"] {
+                padding: 20px 10px !important;
+                width: 260px !important;
+                height: 65px !important;
+                background-color: var(--second-bg-color) !important;
+                border: 2px solid var(--main-bg-color) !important;
+                color: var(--main-bg-color) !important;
+                font-size: 16px !important;
+            }
+
+            .reservations input[type="submit"]:hover {
+                color: var(--main-bg-color-alternate) !important;
+                background-color: var(--main-bg-color) !important;
+            }
+
+            .reservations input,
+            .reservations textarea {
+                background: white !important;
+                font-family: var(--main-font), serif !important;
+                border: 1px solid white !important;
+                color: var(--body-font-color-inverse) !important;
+            }
+
+            .reservations textarea:focus {
+                border-color: var(--main-bg-color) !important;
+            }
+
+            .reservations .contact-form p {
+                color: var(--body-font-color-inverse) !important;
+                font-family: var(--main-font), serif !important;
+            }
+
+            .reservation-phone a {
+                font-size: 22px !important;
+            }
+
+            .reservations .owl-item {
+                margin-top: 40px;
+            }
+
+            /* ====================================
+// ====================================
+// Contact
+// ====================================
+// ================================= */
+            .contact {
+                margin: 0 100px 50px !important;
+                background-color: var(--second-bg-color) !important;
+                color: var(--body-font-color-inverse) !important;
+            }
+
+            .contact h2.section-title {
+                color: var(--heading-font-color-inverse) !important;
+            }
+
+            .contact .jt_row {
+                padding-bottom: 0 !important;
+            }
+
+            .contact input[type="submit"] {
+                padding: 20px 10px !important;
+                width: 260px !important;
+                height: 65px !important;
+                background-color: var(--second-bg-color) !important;
+                font-size: 16px !important;
+                border: 2px solid var(--main-bg-color) !important;
+            }
+
+            .contact input[type="submit"]:hover {
+                background-color: var(--main-bg-color) !important;
+            }
+
+            .contact input,
+            .contact textarea {
+                background: white !important;
+                font-family: var(--main-font), serif !important;
+                border: 1px solid white !important;
+                color: var(--body-font-color-inverse) !important;
+            }
+
+            /* ====================================
+// ====================================
+// Maps
+// ====================================
+// ================================= */
+            #maps {
+                margin: 0 100px !important;
+                width: calc(100% - 200px) !important;
+            }
+
+            /* ====================================
+// ====================================
+// Footer
+// ====================================
+// ================================= */
+            #footer {
+                background: none !important;
+                height: auto !important;
+                padding: 50px 0 !important;
+            }
+
+            #footer .my-link-color a {
+                text-transform: uppercase;
+                visibility: hidden;
+                position: relative;
+            }
+
+            #footer .my-link-color a:after {
+                visibility: visible;
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                content: "Powered by Flipdish";
+                color: var(--main-bg-color) !important;
+                font-weight: 600 !important;
+            }
+
+            #footer .footerlink a {
+                color: var(--body-font-color) !important;
+            }
+
+            #footer .social {
+                margin: 10px 0 30px !important;
+            }
+
+            #footer .social li .icon {
+                background: var(--main-bg-color) !important;
+                font-size: 25px !important;
+                line-height: 67px !important;
+                border-radius: 0 important;
+                margin: 0 5px !important;
+            }
+
+            /* ====================================
+// ====================================
+// Online Ordering - How do you want to order
+// ====================================
+// ================================= */
+            #flipdish-menu .where__option__info h2,
+            #flipdish-menu .where__option__info .fd-h4 {
+                color: var(--body-font-color) !important;
+            }
+
+            #flipdish-menu .where__option:hover h2,
+            #flipdish-menu .where__option:hover .fd-h4 {
+                color: white !important;
+            }
+
+            /* ====================================
+// ====================================
+// Online Ordering - Menu
+// ====================================
+// ================================= */
+            #flipdish-menu .menu__items__item__img-holder,
+            #flipdish-menu
+                .menu__items__item--img-big
+                .menu__items__item__desc {
+                padding: 0 !important;
+            }
+
+            #flipdish-menu .menu__items {
+                width: calc(100% + 30px) !important;
+                position: relative !important;
+                left: -15px !important;
+                margin-bottom: 40px !important;
+                background: none !important;
+            }
+
+            .mymenu,
+            .mymenu #flipdish-menu .light {
+                background-color: var(--second-bg-color) !important;
+            }
+
+            section.mymenu {
+                padding-top: 0 !important;
+            }
+
+            #flipdish-menu .menu,
+            #flipdish-menu .configure > div.col-md-8,
+            #flipdish-menu .menu__basket__content,
+            #flipdish-menu .menu__sidepanel,
+            #flipdish-menu .checkout .col-md-8,
+            #flipdish-menu .checkout .fd-subheader {
+                padding: 16px !important;
+                background: white !important;
+            }
+
+            #flipdish-menu .menu__basket,
+            #flipdish-menu .menu__sidepanel,
+            #flipdish-menu
+                .menu__items__item--img-big
+                .menu__items__item__img-holder__img,
+            #flipdish-menu
+                .menu__items__item--img-small
+                .menu__items__item__img-holder__img,
+            #flipdish-menu .checkout .fd-subheader,
+            #flipdish-menu
+                .menu
+                .row
+                div.menu__items__item--added:hover
+                > div
+                > div,
+            #flipdish-menu .configure__options__select:hover,
+            #flipdish-menu .configure__header--img,
+            #flipdish-menu .configure__total {
+                box-shadow: none !important;
+            }
+
+            #flipdish-menu .menu__basket__content__item:first-child {
+                padding-top: 0 !important;
+            }
+
+            #flipdish-menu .checkout hr {
+                border: 1px dashed #e2e6e8 !important;
+            }
+
+            #flipdish-menu .checkout .checkout__items {
+                border: 1px solid #e2e6e8;
+                background-color: var(--second-bg-color);
+                padding: 16px !important;
+            }
+
+            #flipdish-menu .location-header hr {
+                display: none !important;
+            }
+
+            #flipdish-menu .location-header {
+                margin-bottom: 20px;
+            }
+
+            #flipdish-menu .location-header h1 {
+                font-family: var(--heading-font), serif !important;
+            }
+
+            #flipdish-menu .menu__items__item,
+            #flipdish-menu .menu__basket__content__item {
+                border-bottom: 1px dashed #e2e6e8 !important;
+            }
+
+            #flipdish-menu
+                .menu__items__item--img-big.menu__items__item--added
+                .menu__items__item__img-holder__img {
+                border: 1px solid white !important;
+            }
+
+            #flipdish-menu
+                .menu__items__item--img-big.menu__items__item--added
+                .menu__items__item__img-holder__img__details
+                .fd-h4 {
+                color: var(--body-font-color) !important;
+            }
+
+            #flipdish-menu
+                .menu__items__item--img-big.menu__items__item--added
+                .menu__items__item__img-holder__img__details
+                .fd-h3 {
+                color: var(--main-bg-color) !important;
+            }
+
+            #flipdish-menu
+                .menu__items__column
+                div:first-child
+                .menu__items__item--noimg-nodesc {
+                border-top: 1px dashed #e2e6e8 !important;
+            }
+
+            #flipdish-menu
+                .menu__items__item--img-big:hover
+                .menu__items__item__img-holder__img {
+                border: 1px solid white !important;
+            }
+
+            #flipdish-menu
+                .menu__items__item--img-big
+                .menu__items__item__img-holder__img__details {
+                position: relative !important;
+                padding: 10px 0 0 !important;
+                background: none !important;
+            }
+
+            #flipdish-menu
+                .menu__items__item--img-big
+                .menu__items__item__desc {
+                margin-top: 0 !important;
+            }
+
+            #flipdish-menu
+                .menu__items__item--img-big:hover
+                .menu__items__item__img-holder__img {
+                border: 1px solid white !important;
+            }
+
+            #flipdish-menu .menu__items__item--img-big:hover {
+                -webkit-box-shadow: 0px 8px 5px -3px rgba(158, 158, 158, 0.15);
+                -moz-box-shadow: 0px 8px 5px -3px rgba(158, 158, 158, 0.15);
+                box-shadow: 0px 8px 5px -3px rgba(158, 158, 158, 0.15);
+            }
+
+            #flipdish-menu :not(#\20):not(#\20):not(#\20).MuiTypography-h4,
+            #flipdish-menu .menu__items__item__img-holder .fd-h3,
+            #flipdish-menu .menu__items__item__header__price .fd-h3 {
+                font-size: 14px !important;
+                font-weight: 500 !important;
+                font-family: var(--main-font), serif !important;
+            }
+
+            #flipdish-menu .location-header h1 {
+                font-family: var(--heading-font), serif !important;
+            }
+
+            #flipdish-menu
+                :not(#\20):not(#\20):not(#\20):not(#\20):not(#\20):not(#\20).flipdish-web-order-c1
+                > .MuiExpansionPanelSummary-root {
+                background: none !important;
+                border-left: none !important;
+                border-right: none !important;
+                border-bottom: none !important;
+                border-top: 1px solid #e2e6e8 !important;
+                padding: 10px 0 0 !important;
+                box-shadow: none !important;
+                min-height: auto !important;
+            }
+
+            #flipdish-menu
+                :not(#\20):not(#\20):not(#\20):not(#\20):not(#\20):not(#\20):not(#\20):not(#\20):not(#\20):not(#\20):not(#\20):not(#\20).flipdish-web-order-c1
+                > .MuiExpansionPanelSummary-root
+                > .MuiExpansionPanelSummary-content
+                > .MuiTypography-root {
+                margin-left: 0 !important;
+                font-family: var(--heading-font), serif !important;
+                padding: 0 !important;
+                font-weight: 600 !important;
+            }
+
+            #flipdish-menu :not(#\20):not(#\20):not(#\20).MuiIconButton-root {
+                padding: 0 10px !important;
+            }
+
+            /* ====================================
+// ====================================
+// Random
+// ====================================
+// ================================= */
+            .ornament,
+            .timetable-decorator,
+            .timetable-decorator2,
+            #aboutSection .voffset40,
+            .menu .voffset100,
+            .menu .voffset60,
+            .menu .menu-logo,
+            .gallery .voffset200,
+            .testimonials .testimonials_img,
+            .testimonials .voffset80,
+            .testimonials .voffset20,
+            .MuiExpansionPanelSummary-content img {
+                display: none !important;
+            }
+
+            #timetable .timetable-decorator,
+            #home-slider .slide-sep,
+            .ornament,
+            .overlay {
+                background: none !important;
+            }
+
+            a:focus,
+            :focus {
+                outline: none !important;
+            }
+
+            ::selection {
+                background-color: var(--main-bg-color) !important;
+                color: var(--body-font-color-inverse) !important;
+            }
+
+            .cd-top {
+                visibility: initial !important;
+            }
+
+            /* ==================================== xx ====================================
+// ==================================== xx ====================================
+// Responsive Styling - Media Queries
+// ==================================== xx ====================================
+// ========================================================================= */
+
+            /* ====================================
+// ====================================
+// Max width 1500px
+// ====================================
+// ================================= */
+            @media only screen and (max-width: 1500px) {
+                /* == Home page slider == */
+                #home-slider .voffset100 {
+                    margin-top: 100px;
+                }
+            }
+
+            /* ====================================
+// ====================================
+// Max width 1280px
+// ====================================
+// ================================= */
+            @media only screen and (max-width: 1280px) {
+                /* == Home page slider == */
+                #home-slider .owl-carousel img {
+                    padding-right: 50px !important;
+                }
+
+                .slide-content {
+                    margin-left: 50px !important;
+                }
+
+                /* == Home page - Sections width == */
+                #timetable.section.timetable,
+                #maps {
+                    margin: 0 50px !important;
+                }
+
+                #maps {
+                    width: calc(100% - 100px) !important;
+                }
+
+                section.gallery {
+                    padding: 0 50px !important;
+                }
+
+                section.reservations,
+                section.contact {
+                    margin: 50px !important;
+                }
+            }
+
+            /* ====================================
+// ====================================
+// Max width 1024px
+// ====================================
+// ================================= */
+            @media only screen and (max-width: 1024px) {
+                /* == Home page slider == */
+                #home-slider .owl-carousel img {
+                    padding-right: 34px !important;
+                }
+
+                .slide-content {
+                    margin-left: 34px !important;
+                }
+
+                /* == Home page - Sections width == */
+                #timetable.section.timetable,
+                #maps {
+                    margin: 0 34px !important;
+                }
+
+                #maps {
+                    width: calc(100% - 68px) !important;
+                }
+
+                section.gallery {
+                    padding: 0 34px !important;
+                }
+
+                section.reservations,
+                section.contact {
+                    margin: 50px 34px !important;
+                }
+
+                /* == Navigation == */
+                .navbar-brand {
+                    left: 34px !important;
+                }
+
+                .navbar-nav {
+                    right: 34px !important;
+                }
+            }
+
+            /* ====================================
+// ====================================
+// Max width 991px
+// ====================================
+// ================================= */
+            @media only screen and (max-width: 991px) {
+                /* == Home page slider == */
+                .slide-content {
+                    position: relative !important;
+                    height: auto !important;
+                }
+
+                #home-slider {
+                    height: auto !important;
+                    padding: 0 34px !important;
+                }
+
+                #home-slider .owl-carousel img {
+                    left: 0 !important;
+                    width: 100% !important;
+                    height: 500px !important;
+                    top: 0 !important;
+                    padding: 0 !important;
+                }
+
+                #home-slider .mouse {
+                    bottom: auto !important;
+                    top: 410px !important;
+                    left: 50%;
+                    right: 50%;
+                }
+
+                #home-slider .my-powerby {
+                    top: 420px !important;
+                    padding-right: 36px !important;
+                }
+
+                #home-slider .my-powerby a {
+                    text-align: right !important;
+                }
+
+                #owl-main-text .item {
+                    padding-bottom: 0 !important;
+                }
+
+                .slide-content p {
+                    bottom: 0 !important;
+                }
+
+                #owl-main-text h1 {
+                    margin-bottom: 0 !important;
+                }
+
+                #owl-main-text {
+                    height: auto !important;
+                }
+
+                /* == Home page - About section == */
+                .section.about .row:last-child {
+                    display: flex !important;
+                    flex-direction: column-reverse !important;
+                }
+
+                .section.about .row:last-child p {
+                    margin-bottom: 0 !important;
+                }
+
+                /* == Home page - Map section == */
+                #maps {
+                    height: 100% !important;
+                }
+            }
+
+            /* ====================================
+// ====================================
+// Max width 767px
+// ====================================
+// ================================= */
+            @media only screen and (max-width: 767px) {
+                /* == Home page - Navigation == */
+                #header .navbar-nav {
+                    margin: 0 !important;
+                    background-color: var(--second-bg-color) !important;
+                }
+
+                .navbar-nav > li {
+                    border-bottom-color: var(--body-font-color);
+                }
+
+                /* == Home page - Hero == */
+                .logointro,
+                #owl-main-text {
+                    margin: 0 !important;
+                }
+
+                #home-slider .voffset100 {
+                    margin-top: 50px !important;
+                }
+
+                /* == Home page - About section == */
+                .about .text {
+                    margin: 0 !important;
+                    text-align: left !important;
+                }
+
+                .about .voffset10 {
+                    display: none !important;
+                }
+
+                .about .jt_col,
+                .timetable .jt_col {
+                    margin-bottom: 20px !important;
+                }
+
+                /* == Home page - Testimonials == */
+                .testimonials {
+                    margin: 0 !important;
+                }
+
+                .section {
+                    padding-top: 40px !important;
+                }
+
+                .section.about .jt_row,
+                .section.about,
+                section.menu {
+                    padding-bottom: 50px !important;
+                }
+
+                /* == Home page - Opening Hours == */
+                .timetable .container {
+                    padding-top: 0 !important;
+                }
+
+                .timetable h2 {
+                    line-height: inherit !important;
+                }
+
+                /* == Home page - Menu == */
+                .menu .container {
+                    padding: 0 36px !important;
+                }
+
+                .menu .col-md-12 {
+                    display: none;
+                }
+
+                /* == Home page - Gallery == */
+                .gallery .jt_col {
+                    margin-bottom: 0 !important;
+                }
+
+                /* == Home page - Testimonials  == */
+                #testimonials {
+                    padding: 50px 36px !important;
+                }
+            }
+        </style>
+        <title>Test_Ryan</title>
+
+        <!-- GOOGLE FONTS -->
+        <link
+            href="https://fonts.googleapis.com/css?family=Yellowtail%7cCabin:400,500,600,700,400italic,700italic%7cLibre+Baskerville:400italic%7cGreat+Vibes%7cOswald:400,300,700%7cOpen+Sans:600italic,700"
+            rel="stylesheet"
+            type="text/css"
+        />
+        <!-- META TAGS -->
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <meta
+            name="description"
+            content="Order in a flash online.
+
+We use geolocation so you don&#39;t have to enter your address.
+
+You can pay with cash or card.&#160;
+
+It&#39;s super easy to use.&#160;
+
+Give it a go!"
+        />
+        <meta name="keywords" />
+        <link
+            rel="apple-touch-icon"
+            href="https://flipdish.imgix.net/1ES0z7GICxj3xJcjWaUx72dsCA.png?h=180&w=180&fm=png32"
+        />
+        <link
+            rel="icon"
+            href="https://flipdish.imgix.net/1ES0z7GICxj3xJcjWaUx72dsCA.png?h=16&w=16&fm=png32"
+            sizes="16x16"
+            type="image/png"
+        />
+        <link
+            rel="icon"
+            href="https://flipdish.imgix.net/1ES0z7GICxj3xJcjWaUx72dsCA.png?h=32&w=32&fm=png32"
+            sizes="32x32"
+            type="image/png"
+        />
+        <link
+            rel="icon"
+            href="https://flipdish.imgix.net/1ES0z7GICxj3xJcjWaUx72dsCA.png?h=48&w=48&fm=png32"
+            sizes="48x48"
+            type="image/png"
+        />
+        <link
+            rel="icon"
+            href="https://flipdish.imgix.net/1ES0z7GICxj3xJcjWaUx72dsCA.png?h=62&w=62&fm=png32"
+            sizes="62x62"
+            type="image/png"
+        />
+        <link
+            rel="icon"
+            href="https://flipdish.imgix.net/1ES0z7GICxj3xJcjWaUx72dsCA.png?h=62&w=62&fm=png32"
+            sizes="62x62"
+            type="image/png"
+        />
+        <link
+            rel="icon"
+            href="https://flipdish.imgix.net/1ES0z7GICxj3xJcjWaUx72dsCA.png?h=180&w=180&fm=png32"
+            sizes="180x180"
+            type="image/png"
+        />
+        <link
+            rel="icon"
+            href="https://flipdish.imgix.net/1ES0z7GICxj3xJcjWaUx72dsCA.png?h=192&w=192&fm=png32"
+            sizes="192x192"
+            type="image/png"
+        />
+        <link
+            rel="icon"
+            href="https://flipdish.imgix.net/1ES0z7GICxj3xJcjWaUx72dsCA.png?h=228&w=228&fm=png32"
+            sizes="228x228"
+            type="image/png"
+        />
+        <link
+            rel="shortcut icon"
+            href="https://flipdish.imgix.net/1ES0z7GICxj3xJcjWaUx72dsCA.png?h=150&w=150&fm=png32"
+        />
+
+        <!-- CSS STYLESHEETS -->
+        <link
+            rel="stylesheet"
+            href="https://my.flipdish.com/Areas/AutoSites/elixircontent/elixirfull/css/elixircss?version=123"
+        />
+        <link
+            rel="stylesheet"
+            href="https://use.fontawesome.com/releases/v5.0.10/css/all.css"
+            integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg"
+            crossorigin="anonymous"
+        />
+
+        <style type="text/css">
+            #header .menu-item.current a,
+            #header .menu-item a:hover {
+                color: #f25757 !important;
+            }
+
+            #about h2.heading,
+            #aboutSection h2.heading,
+            section.reservations h3,
+            section.menu h3 {
+                color: #f25757 !important;
+            }
+
+            .logointro {
+                background: url("https://flipdish.imgix.net/1ES0z7GICxj3xJcjWaUx72dsCA.png?width=650&fm=png32");
+                background-size: contain;
+                background-repeat: no-repeat;
+                background-position: center;
+                width: 650px;
+                height: 150px;
+            }
+
+            .slide-content p {
+                padding: 10px;
+            }
+
+            .my-app-logos {
+                margin-top: 40px;
+                padding-bottom: 40px;
+            }
+
+            .my-app-logo {
+                width: 80px;
+                height: 80px;
+                margin-top: 5px;
+            }
+
+            .mouse {
+                cursor: pointer;
+                z-index: 9000;
+            }
+
+            #home-slider .my-powerby {
+                position: absolute;
+                right: 0;
+                bottom: 0;
+                z-index: 9000;
+                margin-right: 15px;
+                margin-bottom: 15px;
+            }
+
+            .my-font-size {
+                font-size: 20px;
+            }
+
+            #home-slider .my-link-color a,
+            #footer .my-link-color a {
+                color: #fff;
+            }
+
+            #footer .footerlink {
+                margin-top: 15px;
+            }
+
+            .section.menu {
+                background-image: none;
+            }
+
+            .slide-sep {
+                background: url(../Areas/AutoSites/elixircontent/elixirfull/images/slide-separator_white.png);
+            }
+
+            .section.dark h2.section-title:before,
+            .section.dark h2.section-title:after {
+                content: url("../Areas/AutoSites/elixircontent/elixirfull/images/header_decorator_light_gray.png");
+            }
+
+            h2.section-title:before,
+            h2.section-title:after {
+                content: url("../Areas/AutoSites/elixircontent/elixirfull/images/header_decorator_dark_gray.png");
+            }
+
+            a.button.menu,
+            .button.menu {
+                color: #f25757;
+                border: 2px solid #f25757;
+            }
+
+            a.button.menu:hover,
+            .button.menu:hover {
+                background: #f25757;
+                color: #ffffff;
+            }
+
+            .nav > li > a:hover,
+            .nav > li > a:focus {
+                background-color: transparent;
+            }
+
+            section.timetable .days {
+                margin-top: 0px;
+            }
+
+            section.timetable {
+                padding-bottom: 140px !important;
+            }
+
+            section.timetable .my-column-divider {
+                background-image: url(../Areas/AutoSites/elixircontent/elixirfull/images/column-divider_light_gray.png) !important;
+                padding-right: 5px !important;
+                padding-bottom: 0px !important;
+                padding-left: 5px !important;
+            }
+
+            section.timetable .divider-short {
+                margin-top: 150px !important;
+                padding-top: 150px !important;
+            }
+
+            section.timetable .divider-short-padding {
+                margin-top: 290px !important;
+                padding-top: 150px !important;
+            }
+
+            section.timetable .divider-long {
+                margin-top: 150px !important;
+                padding-top: 280px !important;
+            }
+
+            .section.timetable .left-column-divider {
+                left: 33.33%;
+            }
+
+            section.timetable .right-column-divider {
+                left: 66.66%;
+            }
+
+            .timetable-decorator {
+                background: url(../Areas/AutoSites/elixircontent/elixirfull/images/timetable-decorator_light_gray.png) !important;
+            }
+
+            .timetable-decorator2 {
+                background: url(../Areas/AutoSites/elixircontent/elixirfull/images/timetable-decorator2_light_gray.png) !important;
+            }
+
+            section.reservations input,
+            section.reservations textarea {
+                color: #333;
+            }
+
+            .parallax {
+                background-attachment: fixed;
+            }
+
+            .section.reservations input.text {
+                height: 40px;
+            }
+
+            .section.contact h3 {
+                color: #fff;
+            }
+
+            .testimonials.carousel-wrapper.with_pagination
+                .owl-theme
+                .owl-controls
+                .owl-page
+                span {
+                background: transparent !important;
+                border: 2px solid #f25757 !important;
+            }
+
+            .testimonials.carousel-wrapper.with_pagination
+                .owl-controls
+                .owl-page.active
+                span,
+            .testimonials.carousel-wrapper.with_pagination
+                .owl-controls.clickable
+                .owl-page:hover
+                span {
+                border: 2px solid #f25757 !important;
+                background: #f25757 !important;
+            }
+
+            section.testimonials h2,
+            section.testimonials .item span.author {
+                color: #f25757 !important;
+            }
+
+            section#home-slider #discount-badge {
+                background-color: #fff;
+                text-align: center;
+                box-sizing: border-box;
+                position: absolute;
+                z-index: 1000;
+                cursor: pointer;
+                border-radius: 50%;
+                box-shadow: 3px 3px 10px 8px rgba(0, 0, 0, 0.09);
+                width: 150px;
+                height: 150px;
+                word-wrap: break-word;
+                left: 50%;
+                margin-left: 167px;
+            }
+
+            section#home-slider #discount-badge .title {
+                font-size: 16px;
+                line-height: 17px;
+            }
+
+            section#home-slider #discount-badge .discount {
+                font-size: 50px;
+                line-height: 56px;
+                color: #f25757;
+                padding-top: 20px;
+            }
+
+            #flipdish-menu {
+                background: rgba(255, 255, 255, 0.9) !important;
+            }
+
+            .streetViewLink {
+                cursor: pointer;
+                color: #e2aa07;
+            }
+
+            .opening-hours {
+                line-height: 70px;
+            }
+
+            .mySocialLabel {
+                display: none;
+            }
+
+            .testimonials_img {
+                background: none;
+                background-image: url("https://flipdish.imgix.net/1ES0z7GICxj3xJcjWaUx72dsCA.png?h=100&fm=png32&dpr=3");
+                background-size: contain;
+                background-repeat: no-repeat;
+                background-position: center;
+                width: 650px;
+                height: 100px;
+            }
+
+            .menu-logo {
+                margin-top: 0;
+            }
+
+            section#contact textarea {
+                min-height: 452px;
+            }
+
+            @media only screen and (min-width: 1281px) {
+                .my-rowopener .left-column-divider {
+                    margin-left: -205px;
+                    left: 49.6% !important;
+                }
+
+                .my-rowopener .right-column-divider {
+                    margin-left: 205px;
+                    left: 49.6% !important;
+                }
+            }
+
+            @media only screen and (max-width: 1024px) {
+                .my-app-logos {
+                    margin-top: -100px;
+                }
+                .my-font-size {
+                    font-size: 18px;
+                }
+                .timetable-decorator,
+                .timetable-decorator2 {
+                    width: 0;
+                }
+                section#home-slider #discount-badge {
+                    margin-left: 95px;
+                }
+            }
+            @media only screen and (max-width: 767px) {
+                #footer .container {
+                    padding-top: 0px;
+                }
+            }
+
+            @media only screen and (max-width: 568px) {
+                .restAddresses {
+                    line-height: 1.4 !important;
+                }
+
+                .slide-content p {
+                    bottom: 100px;
+                    padding: 5px;
+                    margin: 0px !important;
+                }
+                #home-slider .my-powerby {
+                    margin-right: 5px;
+                    margin-bottom: 5px;
+                }
+                .my-font-size {
+                    font-size: 12px;
+                }
+
+                h2.section-title:before,
+                h2.section-title:after,
+                .section.dark h2.section-title:before,
+                .section.dark h2.section-title:after {
+                    content: none;
+                }
+
+                section#home-slider #discount-badge {
+                    width: 100px;
+                    height: 100px;
+                    margin-left: 55px;
+                }
+
+                section#home-slider #discount-badge .discount {
+                    font-size: 25px;
+                    line-height: 25px;
+                    padding-top: 15px;
+                }
+
+                section#home-slider #discount-badge .title {
+                    font-size: 12px;
+                    line-height: 17px;
+                }
+
+                .mySocialLabel {
+                    display: inline;
+                    font-family: "Bitter", sans-serif;
+                    font-style: normal;
+                    margin-left: 0px;
+                    line-height: 18px;
+                }
+
+                .logointro {
+                    width: 250px;
+                }
+
+                section#contact textarea {
+                    min-height: 200px;
+                }
+            }
+
+            @media only screen and (min-width: 569px) {
+                .my-app-logos {
+                    opacity: 1;
+                }
+                @media only screen and (max-height: 645px) {
+                    .my-app-logos {
+                        opacity: 0;
+                    }
+                }
+            }
+
+            @media only screen and (min-width: 1025px) {
+                .my-app-logos {
+                    opacity: 1;
+                }
+                @media only screen and (max-height: 663px) {
+                    .my-app-logos {
+                        opacity: 0;
+                    }
+                }
+            }
+
+            @media only screen and (max-width: 568px) {
+                .my-app-logos {
+                    opacity: 1;
+                }
+                @media only screen and (max-height: 639px) {
+                    .my-app-logos {
+                        opacity: 0;
+                    }
+                }
+            }
+
+            section#empty {
+                min-height: calc(100vh - 100px);
+            }
+
+            footer#footer {
+                position: absolute;
+                width: 100%;
+            }
+
+            #hqContactWrapper h2 {
+                text-align: center;
+                margin-bottom: 30px;
+                font-size: 26px;
+                color: #f25757 !important;
+            }
+        </style>
+
+        <style type="text/css">
+            .logointro {
+                height: 275px;
+            }
+            .logo_elixir {
+                height: 80px;
+                padding: 0;
+                margin: -13px 0 0 0;
+            }
+            .slide-content p {
+                padding: 0px;
+                margin: 0px;
+            }
+            .my-app-logos {
+                margin-top: 0px;
+            }
+            @media only screen and (max-width: 568px) {
+                .logointro {
+                    margin-top: 0px;
+                }
+            }
+            @media only screen and (max-width: 388px) and (min-width: 325px) {
+                .logointro {
+                    height: 150px;
+                }
+            }
+            @media only screen and (max-width: 425px) {
+                section#home-slider #discount-badge {
+                    top: 100px !important;
+                }
+            }
+        </style>
+
+        <!--[if lt IE 9]>
+            <meta http-equiv="X-UA-Compatible" content="IE=8" />
+            <script src="https://my.flipdish.com/Areas/AutoSites/elixircontent/elixirfull/js/html5shiv.js"></script>
+            <script src="https://my.flipdish.com/Areas/AutoSites/elixircontent/elixirfull/js/respond.js"></script>
+        <![endif]-->
+
+        <style>
+            a {
+                color: #f25757;
+            }
+            a:hover {
+                color: #f25757;
+                opacity: 0.85;
+            }
+
+            .order-online-h2 {
+                text-shadow: 1px 1px 7px rgba(150, 150, 150, 1);
+            }
+            h2 {
+                color: green;
+            }
+            @media only screen and (max-width: 568px) {
+                .restAddresses {
+                    line-height: 0.4;
+                }
+            }
+            #flipdish-menu .has-feedback label ~ .form-control-feedback {
+                top: 15px !important;
+            }
+
+            #google_translate_element {
+                position: absolute;
+                left: 100px;
+            }
+            #google_translate_element span {
+                color: black !important;
+            }
+            #skipNavigation {
+                position: absolute;
+                top: 0;
+                left: 0;
+                opacity: 0;
+            }
+        </style>
+
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <!-- https://developers.google.com/gtagjs/devguide/consent -->
+        <script async src="https://www.googletagmanager.com/gtag/js"></script>
+        <script>
+            window.dataLayer = window.dataLayer || []
+            function gtag() {
+                dataLayer.push(arguments)
+            }
+
+            function setGtagCookiesForElixir(
+                isAnalyticsEnabled,
+                isAdvertisingEnabled
+            ) {
+                var analyticsSettings =
+                    isAnalyticsEnabled === true ? "granted" : "denied"
+                var advertisingSettings =
+                    isAdvertisingEnabled === true ? "granted" : "denied"
+                gtag("consent", "default", {
+                    analytics_storage: analyticsSettings,
+                    ad_storage: advertisingSettings,
+                })
+
+                gtag("js", new Date(), {
+                    cookie_expires: 180 * 24 * 60 * 60, // 180 days, in seconds
+                })
+
+                gtag("config", "UA-73435004-1", {
+                    cookie_expires: 180 * 24 * 60 * 60, // 180 days, in seconds
+                })
+            }
+
+            function updateGtagCookiesForElixir(
+                isAnalyticsEnabled,
+                isAdvertisingEnabled
+            ) {
+                var analyticsSettings =
+                    isAnalyticsEnabled === true ? "granted" : "denied"
+                var advertisingSettings =
+                    isAdvertisingEnabled === true ? "granted" : "denied"
+                gtag("consent", "update", {
+                    analytics_storage: analyticsSettings,
+                    ad_storage: advertisingSettings,
+                })
+            }
+
+            function setCookiesForElixir(
+                isNecessaryEnabled,
+                isFunctionalEnabled,
+                isAnalyticsEnabled,
+                isAdvertisingEnabled
+            ) {
+                console.log(
+                    "selected cookies: isNecessaryEnabled = " +
+                        isNecessaryEnabled +
+                        ", isFunctionalEnabled = " +
+                        isFunctionalEnabled +
+                        ", isAnalyticsEnabled = " +
+                        isAnalyticsEnabled +
+                        ", isAdvertisingEnabled = " +
+                        isAdvertisingEnabled
+                )
+                setGtagCookiesForElixir(
+                    isAnalyticsEnabled,
+                    isAdvertisingEnabled
+                )
+            }
+
+            function handleUpdateCookiesForElixir(
+                isNecessaryEnabled,
+                isFunctionalEnabled,
+                isAnalyticsEnabled,
+                isAdvertisingEnabled
+            ) {
+                console.log(
+                    "selected cookies: isNecessaryEnabled = " +
+                        isNecessaryEnabled +
+                        ", isFunctionalEnabled = " +
+                        isFunctionalEnabled +
+                        ", isAnalyticsEnabled = " +
+                        isAnalyticsEnabled +
+                        ", isAdvertisingEnabled = " +
+                        isAdvertisingEnabled
+                )
+                updateGtagCookiesForElixir(
+                    isAnalyticsEnabled,
+                    isAdvertisingEnabled
+                )
+            }
+        </script>
+
+        <link
+            rel="stylesheet"
+            type="text/css"
+            href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css"
+        />
+    </head>
+    <body>
+        <!-- BEGIN HEADER -->
+        <header id="header" role="banner">
+            <div class="jt_row container">
+                <div class="navbar-header page-scroll">
+                    <div id="skipNavigation">
+                        <a href="#skip-to-content">Skip navigation</a>
+                    </div>
+                    <button
+                        type="button"
+                        class="navbar-toggle"
+                        aria-haspopup="true"
+                        data-toggle="collapse"
+                        data-target=".navbar-main-collapse"
+                        aria-label="Access mobile menu"
+                    >
+                        <i class="fas fa-bars"></i>
+                    </button>
+
+                    <a
+                        class="navbar-brand normal logo"
+                        href="index?l=en"
+                        aria-label="Our logo, click here to go to home page"
+                        ><div
+                            class="logo_elixir"
+                            style="
+                                background: url('https://flipdish.imgix.net/1ES0z7GICxj3xJcjWaUx72dsCA.png?h=150&fm=png32');
+                                background-size: contain;
+                                background-repeat: no-repeat;
+                            "
+                        ></div
+                    ></a>
+                    <a
+                        class="navbar-brand mini"
+                        href="index?l=en"
+                        aria-label="Our logo, click here to go to home page"
+                        ><div
+                            class="logo_elixir dark"
+                            style="
+                                background: url('https://flipdish.imgix.net/1ES0z7GICxj3xJcjWaUx72dsCA.png?h=150&fm=png32');
+                                background-size: contain;
+                                background-repeat: no-repeat;
+                            "
+                        ></div
+                    ></a>
+                    <a
+                        class="navbar-brand mini darker"
+                        href="index?l=en"
+                        aria-label="Our logo, click here to go to home page"
+                        ><div
+                            class="logo_elixir dark"
+                            style="
+                                background: url('https://flipdish.imgix.net/1ES0z7GICxj3xJcjWaUx72dsCA.png?h=150&fm=png32');
+                                background-size: contain;
+                                background-repeat: no-repeat;
+                            "
+                        ></div
+                    ></a>
+                </div>
+                <!-- BEGIN NAVIGATION MENU-->
+                <nav
+                    class="collapse navbar-collapse navbar-right navbar-main-collapse"
+                    role="navigation"
+                >
+                    <ul id="nav" class="nav navbar-nav navigation">
+                        <li class="page-scroll menu-item current">
+                            <a href="/fd10785/index?l=en">Home</a>
+                        </li>
+                        <li class="page-scroll menu-item">
+                            <a href="/fd10785//#aboutSection">About</a>
+                        </li>
+                        <li class="page-scroll menu-item">
+                            <a href="/fd10785//#gallery">Gallery</a>
+                        </li>
+                        <li class="page-scroll menu-item">
+                            <a href="/fd10785//#reservations">Reservations</a>
+                        </li>
+                        <li class="page-scroll menu-item">
+                            <a href="/fd10785//#contact">Contact</a>
+                        </li>
+                        <li class="page-scroll menu-item">
+                            <a href="/fd10785/contact?l=en">Contact</a>
+                        </li>
+                        <li class="page-scroll menu-item">
+                            <a href="/fd10785/order?l=en">Order Online</a>
+                        </li>
+                    </ul>
+                </nav>
+                <!-- EN NAVIGATION MENU -->
+            </div>
+        </header>
+        <!-- END HEADER -->
+
+        <style type="text/css"></style>
+
+        <!-- BEGIN HOME SLIDER SECTION -->
+        <section id="home-slider" style="min-height: 100vh">
+            <div class="overlay"></div>
+            <!-- SLIDER IMAGES -->
+            <div id="owl-main" class="owl-carousel">
+                <div class="item">
+                    <img
+                        src="https://flipdish.imgix.net/FoBSbaMiEe8azjV559Gb366o4.jpg?w=1080&h=720"
+                        alt=""
+                    />
+                </div>
+            </div>
+            <!-- SLIDER CONTENT -->
+            <div class="slide-content">
+                <div class="voffset100"></div>
+
+                <a
+                    href="/fd10785/order"
+                    aria-label="Our logo, click here to start your order"
+                >
+                    <span class="logointro"> </span>
+                </a>
+
+                <div id="owl-main-text" tabindex="-1">
+                    <div class="item">
+                        <a href="/fd10785/order" id="skip-to-content"
+                            ><h1
+                                class="order-online-h2"
+                                aria-label="Start your order"
+                            >
+                                Order Online
+                            </h1></a
+                        >
+                    </div>
+                </div>
+                <div class="slide-sep"></div>
+                <div class="restAddresses">
+                    <p>Sandyford, Dublin</p>
+                </div>
+            </div>
+            <!-- BOTTOM ANIMATED ARROW -->
+            <div class="mouse"><span></span></div>
+            <div class="my-powerby my-link-color my-font-size">
+                <a
+                    href="https://www.flipdish.com/"
+                    aria-label="Flipdish link, access our website for more information"
+                >
+                    Online ordering by Flipdish
+                </a>
+            </div>
+        </section>
+        <!-- END HOME SLIDER SECTION -->
+
+        <!-- BEGIN ABOUT SECTION -->
+        <section id="aboutSection" class="section about">
+            <div class="container">
+                <div class="jt_row jt_row-fluid row">
+                    <div class="col-md-12 jt_col column_container">
+                        <h2 class="section-title" tabindex="0">Home</h2>
+                    </div>
+                    <div
+                        class="col-md-6 col-md-offset-3 jt_col column_container"
+                    >
+                        <div class="section-subtitle">award winning crust</div>
+                    </div>
+
+                    <div class="col-md-6 jt_col column_container">
+                        <h2 class="heading font-smoothing">Hand Made</h2>
+                        <p class="text">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing
+                            elit, sed do eiusmod tempor incididunt ut labore et
+                            dolore magna aliqua. Ut enim ad minim veniam, quis
+                            nostrud exercitation ullamco laboris nisi ut aliquip
+                            ex ea commodo consequat.
+                        </p>
+
+                        <div class="ornament"></div>
+                    </div>
+
+                    <div class="col-md-6 jt_col column_container">
+                        <div class="voffset40"></div>
+                        <div id="owl-about" class="owl-carousel">
+                            <div class="item">
+                                <img
+                                    src="https://flipdish.imgix.net/MYaUdNHHmD3DtW6sgcQLpliQuM.jpg?w=1080&h=720"
+                                    alt=""
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="jt_row jt_row-fluid row">
+                    <div class="col-md-6 jt_col column_container">
+                        <div class="voffset10"></div>
+                        <div id="owl-about2" class="owl-carousel">
+                            <div class="item">
+                                <img
+                                    src="https://flipdish.imgix.net/5GoSC1fFXaUeq6Qqvumn0byPp0.jpg?w=1080&h=720"
+                                    alt=""
+                                />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 jt_col column_container">
+                        <h2 class="heading font-smoothing">
+                            Best pizza is shared
+                        </h2>
+                        <p class="text">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing
+                            elit, sed do eiusmod tempor incididunt ut labore et
+                            dolore magna aliqua. Ut enim ad minim veniam, quis
+                            nostrud exercitation ullamco laboris nisi ut aliquip
+                            ex ea commodo consequat.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- END ABOUT SECTION -->
+
+        <!-- BEGIN TIMETABLE SECTION -->
+        <section id="timetable" class="section timetable parallax">
+            <div class="container">
+                <!--<span class="column-divider"></span>-->
+
+                <div class="jt_row jt_row-fluid row">
+                    <div class="col-md-12 jt_col column_container">
+                        <h2 class="section-title">
+                            <span class="timetable-decorator"></span>
+                            <span class="opening-hours">Opening Hours</span>
+                            <span class="timetable-decorator2"></span>
+                        </h2>
+                    </div>
+                    <div class="row my-rowopener">
+                        <div class="col-md-12 jt_col column_container">
+                            <div class="section-subtitle days">
+                                Monday - Sunday
+                            </div>
+                            <div class="section-subtitle hours">8am - 8pm</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- END TIMETABLE SECTION -->
+
+        <!-- BEGIN MENU SECTION -->
+        <section id="menu" class="section menu">
+            <div class="container">
+                <div class="jt_row jt_row-fluid row">
+                    <div class="col-md-12 jt_col column_container">
+                        <div class="voffset100"></div>
+                        <a href="/fd10785/order" aria-label="Start your order">
+                            <div class="container">
+                                <img
+                                    class="center menu-logo"
+                                    height="100"
+                                    src="https://flipdish.imgix.net/1ES0z7GICxj3xJcjWaUx72dsCA.png?h=300"
+                                    alt="Our logo, click here to start your order"
+                                />
+                            </div>
+                        </a>
+                        <div class="voffset60"></div>
+                    </div>
+
+                    <div
+                        class="row"
+                        style="padding-left: 34px; padding-right: 34px"
+                    >
+                        <div class="col-md-4 jt_col column_container">
+                            <h3>Starters</h3>
+                            <ul>
+                                <li>
+                                    Soup
+                                    <div class="detail">
+                                        The perfect beginning to your meal<span
+                                            class="price"
+                                        >
+                                            <i
+                                                style="
+                                                    color: #595959;
+                                                    font-size: 75%;
+                                                "
+                                                >from</i
+                                            >
+                                            €4.50
+                                        </span>
+                                    </div>
+                                </li>
+                                <li>
+                                    Salad
+                                    <div class="detail">
+                                        Packed with super foods<span
+                                            class="price"
+                                        >
+                                            <i
+                                                style="
+                                                    color: #595959;
+                                                    font-size: 75%;
+                                                "
+                                                >from</i
+                                            >
+                                            €5.00
+                                        </span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-md-4 jt_col column_container">
+                            <h3>Mains</h3>
+                            <ul>
+                                <li>
+                                    Pasta
+                                    <div class="detail">
+                                        <span class="price">
+                                            <i
+                                                style="
+                                                    color: #595959;
+                                                    font-size: 75%;
+                                                "
+                                                >from</i
+                                            >
+                                            €8.00
+                                        </span>
+                                    </div>
+                                </li>
+                                <li>
+                                    Curry
+                                    <div class="detail">
+                                        <span class="price">
+                                            <i
+                                                style="
+                                                    color: #595959;
+                                                    font-size: 75%;
+                                                "
+                                                >from</i
+                                            >
+                                            €10.00
+                                        </span>
+                                    </div>
+                                </li>
+                                <li>
+                                    Pizza
+                                    <div class="detail">
+                                        <span class="price">
+                                            <i
+                                                style="
+                                                    color: #595959;
+                                                    font-size: 75%;
+                                                "
+                                                >from</i
+                                            >
+                                            €10.00
+                                        </span>
+                                    </div>
+                                </li>
+                                <li>
+                                    Burger
+                                    <div class="detail">
+                                        <span class="price">
+                                            <i
+                                                style="
+                                                    color: #595959;
+                                                    font-size: 75%;
+                                                "
+                                                >from</i
+                                            >
+                                            €10.00
+                                        </span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-md-4 jt_col column_container">
+                            <h3>Desserts</h3>
+                            <ul>
+                                <li>
+                                    Icecream
+                                    <div class="detail">
+                                        Deliciously creamy ice cream with your
+                                        choice of sauce<span class="price">
+                                            <i
+                                                style="
+                                                    color: #595959;
+                                                    font-size: 75%;
+                                                "
+                                                >from</i
+                                            >
+                                            €3.50
+                                        </span>
+                                    </div>
+                                </li>
+                                <li>
+                                    Fruit Salad
+                                    <div class="detail">
+                                        The healthy option, a tasty dish of ripe
+                                        fruit, all hand picked from selected
+                                        crops<span class="price">
+                                            <i
+                                                style="
+                                                    color: #595959;
+                                                    font-size: 75%;
+                                                "
+                                                >from</i
+                                            >
+                                            €3.50
+                                        </span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div
+                        class="col-md-4 col-md-offset-4 jt_col column_container"
+                    >
+                        <a href="/fd10785/order" class="button menu center"
+                            >Order Online</a
+                        >
+                    </div>
+                </div>
+            </div>
+            <div class="voffset30"></div>
+        </section>
+        <!-- END MENU SECTION -->
+
+        <!--BEGIN GALLERY SECTION -->
+        <section id="gallery" class="section gallery dark">
+            <div class="jt_row jt_row-fluid row">
+                <div class="col-md-12 jt_col column_container">
+                    <h2 class="section-title" tabindex="0">Gallery</h2>
+                    <div
+                        class="col-md-6 col-md-offset-3 jt_col column_container"
+                    >
+                        <div class="section-subtitle"></div>
+                    </div>
+                </div>
+
+                <div class="col-md-12 jt_col column_container">
+                    <div class="portfolio">
+                        <article class="entry burgers">
+                            <a
+                                class="swipebox"
+                                href="https://flipdish.imgix.net/JcihoJe78Rx9hZe8QsqZqJOJlr4.jpg?w=1080&h=720"
+                            >
+                                <img
+                                    src="https://flipdish.imgix.net/JcihoJe78Rx9hZe8QsqZqJOJlr4.jpg?w=1080&h=720"
+                                    class="img-responsive"
+                                    alt=""
+                                />
+                                <span class="magnifier"></span>
+                            </a>
+                        </article>
+                        <article class="entry burgers">
+                            <a
+                                class="swipebox"
+                                href="https://flipdish.imgix.net/IfqCLh5pymdbBRNIJWzXvCz170.jpg?w=1080&h=720"
+                            >
+                                <img
+                                    src="https://flipdish.imgix.net/IfqCLh5pymdbBRNIJWzXvCz170.jpg?w=1080&h=720"
+                                    class="img-responsive"
+                                    alt=""
+                                />
+                                <span class="magnifier"></span>
+                            </a>
+                        </article>
+                        <article class="entry burgers">
+                            <a
+                                class="swipebox"
+                                href="https://flipdish.imgix.net/0MN5Sb8wwmstX6DEI9irPGaBRsU.jpg?w=1080&h=720"
+                            >
+                                <img
+                                    src="https://flipdish.imgix.net/0MN5Sb8wwmstX6DEI9irPGaBRsU.jpg?w=1080&h=720"
+                                    class="img-responsive"
+                                    alt=""
+                                />
+                                <span class="magnifier"></span>
+                            </a>
+                        </article>
+                        <article class="entry burgers">
+                            <a
+                                class="swipebox"
+                                href="https://flipdish.imgix.net/afdIQ9YmW7QTnSh4Wjjg2qyZhJ8.jpg?w=1080&h=720"
+                            >
+                                <img
+                                    src="https://flipdish.imgix.net/afdIQ9YmW7QTnSh4Wjjg2qyZhJ8.jpg?w=1080&h=720"
+                                    class="img-responsive"
+                                    alt=""
+                                />
+                                <span class="magnifier"></span>
+                            </a>
+                        </article>
+                        <article class="entry burgers">
+                            <a
+                                class="swipebox"
+                                href="https://flipdish.imgix.net/Dl33QS5XvWeTGCWSHuajgVh8pY.jpg?w=1080&h=720"
+                            >
+                                <img
+                                    src="https://flipdish.imgix.net/Dl33QS5XvWeTGCWSHuajgVh8pY.jpg?w=1080&h=720"
+                                    class="img-responsive"
+                                    alt=""
+                                />
+                                <span class="magnifier"></span>
+                            </a>
+                        </article>
+                        <article class="entry burgers">
+                            <a
+                                class="swipebox"
+                                href="https://flipdish.imgix.net/SL9bJEA6taZ0ZX07YWExhdh4.jpg?w=1080&h=720"
+                            >
+                                <img
+                                    src="https://flipdish.imgix.net/SL9bJEA6taZ0ZX07YWExhdh4.jpg?w=1080&h=720"
+                                    class="img-responsive"
+                                    alt=""
+                                />
+                                <span class="magnifier"></span>
+                            </a>
+                        </article>
+                    </div>
+                </div>
+                <!-- End .jt_col -->
+            </div>
+            <!-- End .jt_row -->
+            <div class="voffset200"></div>
+        </section>
+        <!-- END GALLERY SECTION -->
+
+        <!-- BEGIN RESERVATIONS SECTION -->
+        <section id="reservations" class="section reservations">
+            <div class="container">
+                <div class="jt_row jt_row-fluid row">
+                    <div class="col-md-12 jt_col column_container">
+                        <h2 class="section-title">Reservations</h2>
+                    </div>
+
+                    <div class="col-md-12 jt_col column_container">
+                        <div class="voffset100"></div>
+
+                        <img
+                            class="center menu-logo"
+                            height="100"
+                            src="https://flipdish.imgix.net/1ES0z7GICxj3xJcjWaUx72dsCA.png?h=300"
+                            alt="This image is our logo"
+                        />
+
+                        <div class="voffset40"></div>
+
+                        <div class="reservationDivider">
+                            <span class="above"></span>
+                        </div>
+                        <div class="voffset50"></div>
+                        <h3 tabindex="0">Make a Reservation</h3>
+                        <div class="reservationDivider"><span></span></div>
+                        <div class="voffset50"></div>
+                    </div>
+                    <div id="result"></div>
+                    <form
+                        action="/fd10785/makereservation"
+                        class="contact-form"
+                        data-ajax="true"
+                        data-ajax-begin="reservations_onBegin"
+                        data-ajax-failure="reservations_OnFailure"
+                        data-ajax-method="Post"
+                        data-ajax-success="reservations_OnSuccess"
+                        id="reservations-form"
+                        method="post"
+                    >
+                        <div
+                            class="col-md-5 col-md-offset-1 jt_col column_container"
+                        >
+                            <p>Book a table</p>
+                            <label class="pull-left" for="Date">Date</label>
+                            <span
+                                aria-live="assertive"
+                                class="field-validation-valid"
+                                data-valmsg-for="Date"
+                                data-valmsg-replace="true"
+                            ></span>
+                            <input
+                                class="text date required text-box single-line"
+                                data-val="true"
+                                data-val-date="The field Date must be a date."
+                                data-val-required="The Date field is required."
+                                id="Date"
+                                max="2020-10-29"
+                                min="2020-10-15"
+                                name="Date"
+                                placeholder="Date"
+                                type="date"
+                                value="1/1/0001 12:00:00 AM"
+                            />
+
+                            <label class="pull-left" for="Time">Time</label>
+                            <span
+                                aria-live="assertive"
+                                class="field-validation-valid"
+                                data-valmsg-for="Time"
+                                data-valmsg-replace="true"
+                            ></span>
+                            <input
+                                type="time"
+                                id="Time"
+                                name="time"
+                                placeholder="Time"
+                                aria-live="polite"
+                                class="text time required"
+                                step="300"
+                            />
+                            <label class="pull-left" for="NumberOfPeople"
+                                >Number of people</label
+                            >
+                            <span
+                                aria-live="assertive"
+                                class="field-validation-valid"
+                                data-valmsg-for="NumberOfPeople"
+                                data-valmsg-replace="true"
+                            ></span>
+                            <input
+                                class="text party required text-box single-line"
+                                data-val="true"
+                                data-val-number="The field Number of people must be a number."
+                                data-val-required="The Number of people field is required."
+                                id="NumberOfPeople"
+                                max="14"
+                                min="1"
+                                name="NumberOfPeople"
+                                placeholder="Number of people"
+                                type="number"
+                                value="0"
+                            />
+                        </div>
+                        <div class="col-md-5 jt_col column_container">
+                            <p>Contact Details</p>
+
+                            <label class="pull-left" for="Name">Name</label>
+                            <span
+                                aria-live="assertive"
+                                class="field-validation-valid"
+                                data-valmsg-for="Name"
+                                data-valmsg-replace="true"
+                            ></span>
+                            <input
+                                class="text reservation_name required text-box single-line"
+                                data-val="true"
+                                data-val-required="The Name field is required."
+                                id="Name"
+                                name="Name"
+                                placeholder="Name"
+                                type="text"
+                                value=""
+                            />
+
+                            <label class="pull-left" for="Email"
+                                >Email Address</label
+                            >
+                            <span
+                                aria-live="assertive"
+                                class="field-validation-valid"
+                                data-valmsg-for="Email"
+                                data-valmsg-replace="true"
+                            ></span>
+                            <input
+                                class="text email required text-box single-line"
+                                data-val="true"
+                                data-val-email="Invalid Email Address"
+                                data-val-required="Please enter an email address"
+                                id="Email"
+                                name="Email"
+                                placeholder="Email"
+                                type="email"
+                                value=""
+                            />
+
+                            <label class="pull-left" for="Phone">Phone</label>
+                            <span
+                                aria-live="assertive"
+                                class="field-validation-valid"
+                                data-valmsg-for="Phone"
+                                data-valmsg-replace="true"
+                            ></span>
+                            <input
+                                class="text reservation_phone required text-box single-line"
+                                data-val="true"
+                                data-val-required="The Phone field is required."
+                                id="Phone"
+                                name="Phone"
+                                placeholder="Phone"
+                                type="text"
+                                value=""
+                            />
+                        </div>
+                        <div
+                            class="col-md-10 col-md-offset-1 jt_col column_container"
+                        >
+                            <textarea
+                                cols="20"
+                                htmlAttributes="{ placeholder = Special Requirements, aria_label = Add your requirements for this reservation, id = reservation_message, name = reservation_message, class = text area, rows = 6 }"
+                                id="Message"
+                                name="Message"
+                                rows="2"
+                            ></textarea>
+                        </div>
+                        <div
+                            class="col-md-4 col-md-offset-4 jt_col column_container"
+                        >
+                            <div class="formSent">
+                                <strong>Your Message Has Been Sent!</strong>
+                                Thank you for contacting us.
+                            </div>
+                            <input
+                                id="reservations_submit"
+                                type="submit"
+                                class="button center"
+                                value="Make reservation"
+                            />
+                        </div>
+                    </form>
+                    <div
+                        class="col-md-12 jt_col column_container"
+                        id="reservations-success"
+                        style="display: none"
+                    >
+                        <div class="voffset100"></div>
+                        <div class="voffset40"></div>
+                        <h3>
+                            Thank you - your reservation has been submitted.
+                        </h3>
+                        <div class="voffset50"></div>
+                    </div>
+                    <div class="col-md-12 jt_col column_container">
+                        <div class="voffset60"></div>
+                        <div class="ornament"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- END RESERVATIONS SECTION-->
+        <!-- BEGIN TESTIMONIALS SECTION -->
+        <section
+            id="testimonials"
+            class="section testimonials parallax voffset100 clearfix"
+        >
+            <div class="container">
+                <div class="jt_row jt_row-fluid row">
+                    <div class="voffset20"></div>
+                    <div class="col-md-12 jt_col column_container">
+                        <div class="testimonials_img"></div>
+                        <h2>Testimonials<span>”</span></h2>
+                    </div>
+                    <div class="col-md-12 jt_col column_container">
+                        <div
+                            class="testimonials carousel-wrapper with_pagination"
+                        >
+                            <div class="owl-carousel generic-carousel">
+                                <div class="item">
+                                    <p>
+                                        Best pizza I have had in a long time.
+                                        Whole meal, thin base. Incredible
+                                    </p>
+                                </div>
+                                <div class="item">
+                                    <p>
+                                        Italya-ish has always been my favourite
+                                        take away pizza outside of Italy. Top
+                                        shelf ingredients, crafted to
+                                        perfection.
+                                    </p>
+                                </div>
+                                <div class="item">
+                                    <p>
+                                        Thank you very much for yummy pizza and
+                                        fast delivery! We receive our pizza 20
+                                        minutes after placing order! It was very
+                                        fast! Pizza is very very very delicious!
+                                        Thank you for so nice attitude toward
+                                        your clients!
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="voffset80"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- End .container -->
+        </section>
+        <!-- END TESTIMONIALS SECTION -->
+        <!-- BEGIN CONTACT SECTION -->
+        <section id="contact" class="section contact dark">
+            <div class="container">
+                <div class="jt_row jt_row-fluid row">
+                    <div class="col-md-12 jt_col column_container">
+                        <h2 class="section-title" tabindex="0">Contact</h2>
+                    </div>
+                    <div
+                        class="col-md-6 col-md-offset-3 jt_col column_container"
+                    >
+                        <div class="section-subtitle"></div>
+                    </div>
+                    <form
+                        action="/fd10785/contact"
+                        class="contact-form"
+                        data-ajax="true"
+                        data-ajax-begin="contact_onBegin"
+                        data-ajax-failure="contact_OnFailure"
+                        data-ajax-method="Post"
+                        data-ajax-success="contact_OnSuccess"
+                        id="contact-form"
+                        method="post"
+                    >
+                        <div class="col-md-6 jt_col column_container">
+                            <!--<label class="pull-left" for="Name">Name</label> -->
+                            <span
+                                aria-live="assertive"
+                                class="field-validation-valid"
+                                data-valmsg-for="Name"
+                                data-valmsg-replace="true"
+                                style="color: white"
+                            ></span>
+                            <input
+                                aria-label="Enter your name"
+                                class="text name required text-box single-line"
+                                data-val="true"
+                                data-val-required="The Name field is required."
+                                id="Name"
+                                name="Name"
+                                placeholder="Name"
+                                type="text"
+                                value=""
+                            />
+                            <!--<input type="text" id="name" name="name" class="text name required" placeholder="Name">-->
+
+                            <span
+                                aria-live="assertive"
+                                class="field-validation-valid"
+                                data-valmsg-for="Phone"
+                                data-valmsg-replace="true"
+                                style="color: white"
+                            ></span>
+                            <input
+                                aria-label="Enter your mobile number"
+                                class="text phone required text-box single-line"
+                                id="Phone"
+                                name="Phone"
+                                placeholder="Phone"
+                                type="text"
+                                value=""
+                            />
+
+                            <!--<label class="pull-left" for="Email">Email Address</label>-->
+                            <span
+                                aria-live="assertive"
+                                class="field-validation-valid"
+                                data-valmsg-for="Email"
+                                data-valmsg-replace="true"
+                                style="color: white"
+                            ></span>
+                            <input
+                                aria-label="Please enter an email address"
+                                class="text email required text-box single-line"
+                                data-val="true"
+                                data-val-email="Invalid Email Address"
+                                data-val-required="Please enter an email address"
+                                id="Email"
+                                name="Email"
+                                placeholder="Email"
+                                type="email"
+                                value=""
+                            />
+                            <!--<input type="email" id="email" name="email" class="tex email required" placeholder="Email">-->
+
+                            <!--<label class="pull-left" for="Captcha">Captcha</label> -->
+                            <span
+                                aria-live="assertive"
+                                class="field-validation-valid"
+                                data-valmsg-for="Captcha"
+                                data-valmsg-replace="true"
+                                style="color: white"
+                            ></span>
+                            <input
+                                aria-label="Enter &#39;4&#39; to prove you are a human"
+                                class="text name required text-box single-line"
+                                data-val="true"
+                                data-val-required="The Captcha field is required."
+                                id="Captcha"
+                                name="Captcha"
+                                placeholder="Enter &#39;4&#39; to prove you are a human"
+                                type="text"
+                                value=""
+                            />
+                        </div>
+                        <div class="col-md-6 jt_col column_container">
+                            <textarea
+                                id="message"
+                                name="message"
+                                class="text area"
+                                placeholder="Message"
+                                rows="8"
+                                aria-label="Write any message in this field"
+                            ></textarea>
+                        </div>
+                        <div
+                            class="col-md-4 col-md-offset-4 jt_col column_container"
+                        >
+                            <div class="formSent" aria-live="polite">
+                                <strong>Your Message Has Been Sent!</strong>
+                                Thank you for contacting us.
+                            </div>
+                            <input
+                                id="contact_submit"
+                                type="submit"
+                                class="button center"
+                                value="Submit"
+                            />
+                        </div>
+                    </form>
+
+                    <div
+                        class="col-md-12 jt_col column_container"
+                        id="contact-success"
+                        style="display: none"
+                    >
+                        <div class="voffset100"></div>
+
+                        <div class="voffset40"></div>
+
+                        <h3 class="text-center" aria-live="polite" tabindex="0">
+                            Thank you - your message has been submitted.
+                        </h3>
+
+                        <div class="voffset50"></div>
+                    </div>
+
+                    <div class="voffset100"></div>
+                </div>
+                <div class="voffset50"></div>
+            </div>
+        </section>
+        <!-- END CONTACT SECTION -->
+
+        <script>
+            var MAP_COLOR = "#f25757"
+            var mapLocations = []
+
+            mapLocations.push({
+                latitude: 53.3509066418349,
+                longitude: -6.26058833008625,
+                description:
+                    'Test_Ryan Sandyford, Dublin<br /><a class="streetViewLink" onclick="showStreetView(this)" data-latitude="53.3509066418349" data-longitude="-6.26058833008625">Street View&nbsp;<i class="fas fa-street-view"></i></a>',
+            })
+        </script>
+
+        <!-- BEGIN MAP SECTION -->
+        <section id="maps" aria-hidden="true">
+            <script
+                type="text/javascript"
+                src="//maps.google.com/maps/api/js?key=AIzaSyDPmaK_ZeZzYITQHT9KpftobsXIz3r8SWo"
+            ></script>
+            <div class="map-content">
+                <div
+                    class="wpgmappity_container inner-map"
+                    id="wpgmappitymap"
+                ></div>
+            </div>
+        </section>
+        <!-- END MAP SECTION -->
+
+        <!-- BEGIN FOOTER -->
+        <footer id="footer" class="section" role="contentinfo">
+            <div class="container">
+                <ul class="social"></ul>
+
+                <div class="footerlink my-link-color my-font-size">
+                    <a
+                        href="https://www.flipdish.com"
+                        aria-label="Flipdish link, access our website for more information"
+                        >Online ordering by Flipdish</a
+                    >
+                </div>
+                <div class="footerlink" style="font-size: small">
+                    <a href="/fd10785/terms" style="color: #ccc" target="_blank"
+                        >Terms</a
+                    >
+                    |
+                    <a
+                        href="/fd10785/privacy"
+                        style="color: #ccc"
+                        target="_blank"
+                        >Privacy</a
+                    >
+
+                    |
+                    <a
+                        href="/fd10785/cookiepolicy"
+                        style="color: #ccc"
+                        target="_blank"
+                        >Cookie Policy</a
+                    >
+                    |
+                    <a
+                        href="javascript:updateCookiesForElixir()"
+                        style="color: #ccc"
+                        >Cookie Settings</a
+                    >
+                </div>
+            </div>
+        </footer>
+        <!-- END FOOTER -->
+        <a href="#0" class="cd-top">Top</a>
+        <!-- BEGIN Scripts-->
+        <script src="https://my.flipdish.com/Areas/AutoSites/elixircontent/elixirfull/js/elixirjs"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.blockUI/2.70/jquery.blockUI.min.js"></script>
+        <script>
+            var reservations_onBegin = function () {
+                console.log("triggered reservations_onBegin() ")
+                $("#reservations-form").block()
+            }
+            var reservations_OnSuccess = function (msg) {
+                console.log(
+                    "triggered reservations_OnSuccess(), success: " +
+                        msg.Success
+                )
+                if (msg.Success) {
+                    $("#reservations-form").fadeOut("fast", function () {
+                        $("#reservations-success").fadeIn()
+                    })
+                } else {
+                    alert(msg.UserMessage)
+                }
+            }
+            var reservations_OnFailure = function () {
+                console.log("triggered reservations_OnFailure() ")
+
+                $("#reservations-form").unblock()
+            }
+        </script>
+        <script>
+            var contact_onBegin = function () {
+                console.log("triggered contact_onBegin() ")
+                $("#contact-form").block()
+            }
+            var contact_OnSuccess = function (msg) {
+                console.log(
+                    "triggered contact_OnSuccess(), success: " + msg.Success
+                )
+                if (msg.Success) {
+                    $("#contact-form").fadeOut("fast", function () {
+                        $("#contact-success").fadeIn()
+                    })
+                } else {
+                    alert(msg.UserMessage)
+                }
+            }
+            var contact_OnFailure = function () {
+                console.log("triggered contact_OnFailure() ")
+
+                $("#contact-form").unblock()
+            }
+        </script>
+
+        <script type="text/javascript">
+            ;(function ($) {
+                $("body").addClass("default")
+
+                $(".swipebox").swipebox()
+            })(jQuery)
+        </script>
+        <script type="application/ld+json">
+            [
+                {
+                    "@context": "http://schema.org",
+                    "@type": "FastFoodRestaurant",
+                    "name": "Test_Ryan",
+                    "address": {
+                        "@type": "PostalAddress",
+                        "addressCountry": "IE",
+                        "addressLocality": "Dublin",
+                        "addressRegion": "IE",
+                        "postalCode": "",
+                        "streetAddress": "Sandyford"
+                    },
+                    "aggregateRating": {
+                        "@type": "AggregateRating",
+                        "ratingValue": 4.0,
+                        "ratingCount": 3
+                    },
+                    "geo": {
+                        "@type": "GeoCoordinates",
+                        "latitude": 53.3509066418349,
+                        "longitude": -6.26058833008625
+                    },
+                    "makesOffer": {
+                        "@type": "Offer",
+                        "name": "ONLINE ONLY OFFERS",
+                        "description": "Receive special discounts and offers - ONLINE ONLY",
+                        "image": "https://flipdish.blob.core.windows.net/pub/gmb_signup_generic.jpg",
+                        "availabilityEnds": "2021-04-01T00:00:00+00:00",
+                        "availabilityStarts": "2020-10-01T00:00:00+00:00"
+                    },
+                    "openingHoursSpecification": [
+                        {
+                            "@type": "OpeningHoursSpecification",
+                            "closes": "20:00:00",
+                            "dayOfWeek": "http://schema.org/Sunday",
+                            "opens": "08:00:00"
+                        },
+                        {
+                            "@type": "OpeningHoursSpecification",
+                            "closes": "20:00:00",
+                            "dayOfWeek": "http://schema.org/Monday",
+                            "opens": "08:00:00"
+                        },
+                        {
+                            "@type": "OpeningHoursSpecification",
+                            "closes": "20:00:00",
+                            "dayOfWeek": "http://schema.org/Tuesday",
+                            "opens": "08:00:00"
+                        },
+                        {
+                            "@type": "OpeningHoursSpecification",
+                            "closes": "20:00:00",
+                            "dayOfWeek": "http://schema.org/Wednesday",
+                            "opens": "08:00:00"
+                        },
+                        {
+                            "@type": "OpeningHoursSpecification",
+                            "closes": "20:00:00",
+                            "dayOfWeek": "http://schema.org/Thursday",
+                            "opens": "08:00:00"
+                        },
+                        {
+                            "@type": "OpeningHoursSpecification",
+                            "closes": "20:00:00",
+                            "dayOfWeek": "http://schema.org/Friday",
+                            "opens": "08:00:00"
+                        },
+                        {
+                            "@type": "OpeningHoursSpecification",
+                            "closes": "20:00:00",
+                            "dayOfWeek": "http://schema.org/Saturday",
+                            "opens": "08:00:00"
+                        }
+                    ],
+                    "telephone": null,
+                    "paymentAccepted": ["Cash", "Card"],
+                    "acceptsReservations": "",
+                    "hasMenu": "",
+                    "servesCuisine": ["Paleo"]
+                }
+            ]
+        </script>
+        <script src="https://my.flipdish.com/Areas/AutoSites/elixircontent/flipdish_language.js?nonce=637383723721696956"></script>
+        <script>
+            flipdish.initialize("en")
+
+            var languageSelector = document.getElementById("languageSelector")
+            languageSelector.value = flipdish.getLanguage()
+        </script>
+        <!-- END Scripts -->
+
+        <script
+            type="text/javascript"
+            src="https://flipdish-cookie-consent.s3-eu-west-1.amazonaws.com/www/production/latest/fd-cc.js?rand=5"
+        ></script>
+        <script type="text/javascript">
+            var isInitCookiesForElixir = true
+            ;(function () {
+                function docReady(fn) {
+                    // see if DOM is already available
+                    if (
+                        document.readyState === "complete" ||
+                        document.readyState === "interactive"
+                    ) {
+                        // call on next available tick
+                        setTimeout(fn, 1)
+                    } else {
+                        document.addEventListener("DOMContentLoaded", fn)
+                    }
+                }
+
+                docReady(function () {
+                    var cookiePath = document.domain
+
+                    cookiePath = `${document.domain}/fd10785`
+
+                    window["fdCc"].init(
+                        {
+                            lang: "en",
+                            logoUrl:
+                                "https://flipdish.imgix.net/1ES0z7GICxj3xJcjWaUx72dsCA.png?h=150&fm=png32",
+                            cookiePolicyUrl: "/fd10785/cookiepolicy",
+                            restaurantName: "Test_Ryan",
+                            cookiePath: cookiePath,
+                        },
+                        function cb(selected) {
+                            const isNecessaryEnabled = selected.includes(
+                                "necessary"
+                            )
+                            const isFunctionalEnabled = selected.includes(
+                                "functional"
+                            )
+                            const isAnalyticsEnabled = selected.includes(
+                                "performance"
+                            )
+                            const isAdvertisingEnabled = selected.includes(
+                                "advertising"
+                            )
+                            if (isInitCookiesForElixir === true) {
+                                setCookiesForElixir(
+                                    isNecessaryEnabled,
+                                    isFunctionalEnabled,
+                                    isAnalyticsEnabled,
+                                    isAdvertisingEnabled
+                                )
+                            } else {
+                                handleUpdateCookiesForElixir(
+                                    isNecessaryEnabled,
+                                    isFunctionalEnabled,
+                                    isAnalyticsEnabled,
+                                    isAdvertisingEnabled
+                                )
+                            }
+                        }
+                    )
+                })
+            })()
+
+            function updateCookiesForElixir() {
+                isInitCookiesForElixir = false
+                window["fdCc"].edit({
+                    lang: "en",
+                    logoUrl:
+                        "https://flipdish.imgix.net/1ES0z7GICxj3xJcjWaUx72dsCA.png?h=150&fm=png32",
+                    cookiePolicyUrl: "/fd10785/cookiepolicy",
+                    restaurantName: "Test_Ryan",
+                })
+            }
+        </script>
+    </body>
+</html>
