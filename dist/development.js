@@ -32,12 +32,7 @@ class Hello extends React.Component {
     }
 
     render() {
-        return (
-            <div>
-                <h1>FD Template Customiser via jsDelivr</h1>
-                <button onClick={this.handleClick}>Random Colour</button>
-            </div>
-        )
+        return <h1>Hello World!</h1>
     }
 }
 
