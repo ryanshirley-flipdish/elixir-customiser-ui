@@ -1,7 +1,3 @@
-"use strict"
-
-const e = React.createElement
-
 class Hello extends React.Component {
     constructor(props) {
         super(props)
@@ -45,4 +41,4 @@ class Hello extends React.Component {
     }
 }
 
-ReactDOM.render(e(Hello), document.getElementById("fd_customiser"))
+ReactDOM.render(<Hello />, document.getElementById("fd_customiser"))
