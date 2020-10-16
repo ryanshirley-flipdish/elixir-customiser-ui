@@ -1,5 +1,6 @@
-class Hello extends React.Component {
-    
+import React from "react"
+
+class App extends React.Component {
     constructor(props) {
         super(props)
         // This binding is necessary to make `this` work in the callback
@@ -35,11 +36,11 @@ class Hello extends React.Component {
     render() {
         return (
             <div>
-                <h1>FD Template Customiser via jsDelivr</h1>
+                <h1>FD Template Customiser via complier</h1>
                 <button onClick={this.handleClick}>Random Colour</button>
             </div>
         )
     }
 }
 
-ReactDOM.render(<Hello />, document.getElementById("fd_customiser"))
+export default App
