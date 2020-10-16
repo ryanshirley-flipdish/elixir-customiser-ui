@@ -14,7 +14,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "build:widget": "parcel build src/production.js --no-source-maps -d dist",
+    "build:widget": "parcel build src/production/production.js --no-source-maps -d dist",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
