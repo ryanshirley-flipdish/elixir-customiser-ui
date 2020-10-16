@@ -1,6 +1,6 @@
 import React from "react"
 import ReactDOM from "react-dom"
 
-import App from "../App"
+import Customiser from "../components/customiser"
 
-ReactDOM.render(<App />, document.getElementById("fd_customiser"))
+ReactDOM.render(<Customiser />, document.getElementById("fd_customiser"))
