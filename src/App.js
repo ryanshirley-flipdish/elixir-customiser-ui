@@ -1,5 +1,7 @@
 import React from "react"
 
+import "./App.css"
+
 class App extends React.Component {
     constructor(props) {
         super(props)
@@ -36,7 +38,7 @@ class App extends React.Component {
     render() {
         return (
             <div>
-                <h1>FD Template Customiser via complier</h1>
+                <h1>FD Template Customiser</h1>
                 <button onClick={this.handleClick}>Random Colour</button>
             </div>
         )
