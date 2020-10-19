@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+#fd_customiser {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    color: #000000de !important;
+    position: fixed;
+    bottom: 0;
+    right: 100px;
+    z-index: 99999999;
+    width: 500px;
+
+    
+}
+
+.fd_ec_header {
+    background-color: #4C5CFE;
+    padding: $spacer;
+    text-align: center;
+    border-top-left-radius: $border-radius;
+    border-top-right-radius: $border-radius;
+
+    h3 {
+        font-weight: 400;
+        color: white;
+        margin: 0;
+    }
+}
+
+.fd_ec_body {
+    background: #F8F8F8;
+    padding: $spacer * 2 $spacer;
+}
