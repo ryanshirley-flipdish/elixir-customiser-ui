@@ -32,10 +32,10 @@ class customiser extends React.Component {
                 </div>
                 <div className="fd_ec_body">
                     <SectionHeader>Colours</SectionHeader>
-                    <ColourPicker variable="main_bg_color" title="Main Background" />
-                    <ColourPicker variable="main_bg_color_alternate" title="Alternate Background" />
-                    <ColourPicker variable="heading_font_color" title="Headings" />
-                    <ColourPicker variable="body_font_color" title="Body" />
+                    <ColourPicker variable="main-bg-color" title="Main Background" />
+                    <ColourPicker variable="main-bg-color-alternate" title="Alternate Background" />
+                    <ColourPicker variable="heading-font-color" title="Headings" />
+                    <ColourPicker variable="body-font-color" title="Body" />
                 </div>
             </>
         )
