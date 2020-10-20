@@ -3,12 +3,15 @@ import { ChromePicker } from "react-color"
 
 function ColourPicker(props) {
     const [display, setDisplay] = useState(false)
+    const [colour, setColour] = useState(getComputedStyle(document.documentElement).getPropertyValue(`--${props.variable}`))
 
     /**
-     * handleChangeComplete() Handle Colour pixked event
+     * handleChangeComplete() Handle Colour picked event
      */
     function handleChangeComplete (color) {
-        // this.setState({ main_bg_color: color.hex })
+        // Set colour state & root variable
+        setColour(color.hex)
+
         document.documentElement.style.setProperty(
             `--${props.variable}`,
             color.hex
@@ -24,7 +27,7 @@ function ColourPicker(props) {
             {display ? (
                 <div className="popover">
                     <div className="cover" onClick={() => setDisplay(false)} />
-                    <ChromePicker onChangeComplete={handleChangeComplete} />
+                    <ChromePicker color={colour} onChangeComplete={handleChangeComplete} />
                 </div>
             ) : null}
         </div>
