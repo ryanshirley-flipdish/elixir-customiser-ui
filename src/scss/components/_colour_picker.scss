@@ -1,5 +1,8 @@
 .fd_ec_colour_picker {
     position: relative;
+    display: table;
+    width: 100%;
+    margin-bottom: $spacer;
 
     .popover {
         position: absolute;
@@ -13,5 +16,13 @@
         right: 0;
         bottom: 0px;
         left: 0px;
+    }
+
+    p, button {
+        display: table-cell;
+    }
+
+    button {
+        float: right;
     }
 }

@@ -32,11 +32,11 @@
 .fd_ec_body {
     background: #F8F8F8;
     height: 0;
-    padding: 0 $spacer;
+    padding: 0 $spacer * 2;
     transition: all 1s ease;
 
     &.fd_ec_body_open {
         height: 600px;
-        padding: $spacer * 2 $spacer;
+        padding: $spacer * 3 $spacer * 2;
     }
 }
