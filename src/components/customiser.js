@@ -22,11 +22,17 @@ function Customiser() {
                     title="Main Background"
                 />
                 <ColourPicker
-                    variable="main-bg-color-alternate"
-                    title="Alternate Background"
+                    variable="main-bg-color=alternate"
+                    title="Main Background Alternate"
+                />
+                <ColourPicker
+                    variable="second-bg-color"
+                    title="Second Background"
                 />
                 <ColourPicker variable="heading-font-color" title="Headings" />
                 <ColourPicker variable="body-font-color" title="Body" />
+                <ColourPicker variable="heading-font-color-inverse" title="Headings Inverse" />
+                <ColourPicker variable="body-font-color-inverse" title="Body Inverse" />
             </div>
         </>
     )
