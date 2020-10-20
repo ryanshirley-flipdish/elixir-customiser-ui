@@ -27,7 +27,7 @@ function ColourPicker(props) {
             {display ? (
                 <div className="popover">
                     <div className="cover" onClick={() => setDisplay(false)} />
-                    <ChromePicker color={colour} onChangeComplete={handleChangeComplete} />
+                    <ChromePicker color={colour} onChange={handleChangeComplete} />
                 </div>
             ) : null}
         </div>
