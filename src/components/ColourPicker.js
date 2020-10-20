@@ -19,7 +19,7 @@ function ColourPicker(props) {
     }
 
     return (
-        <div>
+        <div className="fd_ec_colour_picker">
             <p className="name">{props.title}</p>
 
             <button onClick={() => setDisplay(!display)}>Pick Color</button>

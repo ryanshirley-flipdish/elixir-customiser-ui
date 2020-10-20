@@ -9,8 +9,6 @@
     right: 100px;
     z-index: 99999999;
     width: 500px;
-
-    
 }
 
 .fd_ec_header {
@@ -25,9 +23,20 @@
         color: white;
         margin: 0;
     }
+
+    &:hover {
+        cursor: pointer;
+    }
 }
 
 .fd_ec_body {
     background: #F8F8F8;
-    padding: $spacer * 2 $spacer;
+    height: 0;
+    padding: 0 $spacer;
+    transition: all 1s ease;
+
+    &.fd_ec_body_open {
+        height: 600px;
+        padding: $spacer * 2 $spacer;
+    }
 }

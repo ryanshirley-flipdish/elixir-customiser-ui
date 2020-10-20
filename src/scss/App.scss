@@ -3,17 +3,5 @@
 @import "./core";
 
 // Components
-@import "./components/section-header"; 
-
-.popover {
-    // position: absolute;
-    z-index: 2;
-    right: 0;
-}
-.cover {
-    position: fixed;
-    top: 0px;
-    right: 0;
-    bottom: 0px;
-    left: 0px;
-}
+@import "./components/colour_picker";
+@import "./components/section-header";

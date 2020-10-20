@@ -1,0 +1,17 @@
+.fd_ec_colour_picker {
+    position: relative;
+
+    .popover {
+        position: absolute;
+        z-index: 2;
+        right: 0;
+        bottom: 0;
+    }
+    .cover {
+        position: fixed;
+        top: 0px;
+        right: 0;
+        bottom: 0px;
+        left: 0px;
+    }
+}
