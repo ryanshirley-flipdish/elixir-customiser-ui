@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import PropTypes from "prop-types"
 import { ChromePicker } from "react-color"
 
 function ColourPicker(props) {
@@ -35,3 +36,8 @@ function ColourPicker(props) {
 }
 
 export default ColourPicker
+
+
+ColourPicker.propTypes = {
+    title: PropTypes.number.isRequired
+}

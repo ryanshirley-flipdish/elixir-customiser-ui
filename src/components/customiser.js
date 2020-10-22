@@ -1,14 +1,42 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
+import config from "../config"
 
 // Styling
 import "../scss/App.scss"
 
 // Components
+import Select from "react-select"
 import SectionHeader from "./SectionHeader"
 import ColourPicker from "./ColourPicker"
 
 function Customiser() {
-    const [open, setOpen] = useState(false)
+    const [open, setOpen] = useState(true)
+    const [selectedTemplate, setSelectedTemplate] = useState()
+
+    useEffect(() => {
+        if (open && selectedTemplate) {
+            // Remove old stylesheets
+            var oldCSS = document.getElementById("elixirTemplate")
+            if(oldCSS) oldCSS.parentNode.removeChild(oldCSS)
+
+            // Add new stylesheets
+            var newCSS = document.createElement("link")
+            newCSS.id = "elixirTemplate"
+            newCSS.rel = "stylesheet"
+            newCSS.href = elixirs[selectedTemplate].css
+            document.head.appendChild(newCSS)
+        }
+    })
+
+    // Format Elixir List
+    const { elixirs } = config
+    const options = []
+    for (const [key, elixir] of Object.entries(elixirs)) {
+        options.push({
+            value: key,
+            label: elixir.label,
+        })
+    }
 
     return (
         <>
@@ -16,23 +44,32 @@ function Customiser() {
                 <h3>Customise Website</h3>
             </div>
             <div className={"fd_ec_body" + (open ? " fd_ec_body_open" : "")}>
-                <SectionHeader>Colours</SectionHeader>
-                <ColourPicker
-                    variable="main-bg-color"
-                    title="Main Background"
+                <SectionHeader>Template</SectionHeader>
+                <Select
+                    options={options}
+                    onChange={(temp) => setSelectedTemplate(temp.value)}
+                    className="fd_ec_select"
                 />
-                <ColourPicker
-                    variable="main-bg-color=alternate"
-                    title="Main Background Alternate"
-                />
-                <ColourPicker
-                    variable="second-bg-color"
-                    title="Second Background"
-                />
-                <ColourPicker variable="heading-font-color" title="Headings" />
-                <ColourPicker variable="body-font-color" title="Body" />
-                <ColourPicker variable="heading-font-color-inverse" title="Headings Inverse" />
-                <ColourPicker variable="body-font-color-inverse" title="Body Inverse" />
+
+                {selectedTemplate ? (
+                    <>
+                        <SectionHeader>Colours</SectionHeader>
+                        {elixirs[selectedTemplate].settings.colours.map(
+                            (setting) => (
+                                <>
+                                    <ColourPicker
+                                        variable={setting.variable}
+                                        title={setting.name}
+                                        key={setting.variable}
+                                    />
+                                    <small>{setting.description}</small>
+                                </>
+                            )
+                        )}
+                    </>
+                ) : (
+                    "No template selected"
+                )}
             </div>
         </>
     )
