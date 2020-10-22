@@ -8,21 +8,32 @@ function ColourPicker(props) {
 
     useEffect(() => {
         if (!colour) {
-            setColour(getComputedStyle(document.documentElement).getPropertyValue(`--${props.variable}`))
+            setColour(
+                getComputedStyle(document.documentElement).getPropertyValue(
+                    `--${props.variable}`
+                )
+            )
         }
     })
 
     /**
      * handleChangeComplete() Handle Colour picked event
      */
-    function handleChangeComplete (color) {
+    function handleChangeComplete(color) {
         // Set colour state & root variable
         setColour(color.hex)
 
-        document.documentElement.style.setProperty(
-            `--${props.variable}`,
-            color.hex
-        )
+        if (props.forceRGB) {
+            document.documentElement.style.setProperty(
+                `--${props.variable}`,
+                `rgb(${color.rgb.r},${color.rgb.g},${color.rgb.b})`
+            )
+        } else {
+            document.documentElement.style.setProperty(
+                `--${props.variable}`,
+                color.hex
+            )
+        }
     }
 
     return (
@@ -34,7 +45,10 @@ function ColourPicker(props) {
             {display ? (
                 <div className="popover">
                     <div className="cover" onClick={() => setDisplay(false)} />
-                    <ChromePicker color={colour} onChange={handleChangeComplete} />
+                    <ChromePicker
+                        color={colour}
+                        onChange={handleChangeComplete}
+                    />
                 </div>
             ) : null}
         </div>
@@ -43,9 +57,8 @@ function ColourPicker(props) {
 
 export default ColourPicker
 
-
 ColourPicker.propTypes = {
     variable: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
-    forceRGB: PropTypes.bool.isRequired
+    forceRGB: PropTypes.bool.isRequired,
 }

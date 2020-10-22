@@ -61,6 +61,7 @@ function Customiser() {
                                         variable={setting.variable}
                                         title={setting.name}
                                         key={setting.variable}
+                                        forceRGB={setting.forceRGB}
                                     />
                                     <small>{setting.description}</small>
                                 </>
