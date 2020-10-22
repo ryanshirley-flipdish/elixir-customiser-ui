@@ -10,7 +10,7 @@ import SectionHeader from "./SectionHeader"
 import ColourPicker from "./ColourPicker"
 
 function Customiser() {
-    const [open, setOpen] = useState(true)
+    const [open, setOpen] = useState(false)
     const [selectedTemplate, setSelectedTemplate] = useState()
 
     useEffect(() => {
