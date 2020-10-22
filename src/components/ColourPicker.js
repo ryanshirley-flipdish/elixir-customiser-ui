@@ -1,10 +1,16 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import PropTypes from "prop-types"
 import { ChromePicker } from "react-color"
 
 function ColourPicker(props) {
     const [display, setDisplay] = useState(false)
-    const [colour, setColour] = useState(getComputedStyle(document.documentElement).getPropertyValue(`--${props.variable}`))
+    const [colour, setColour] = useState(false)
+
+    useEffect(() => {
+        if (!colour) {
+            setColour(getComputedStyle(document.documentElement).getPropertyValue(`--${props.variable}`))
+        }
+    })
 
     /**
      * handleChangeComplete() Handle Colour picked event
@@ -39,5 +45,7 @@ export default ColourPicker
 
 
 ColourPicker.propTypes = {
-    title: PropTypes.number.isRequired
+    variable: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    forceRGB: PropTypes.bool.isRequired
 }
