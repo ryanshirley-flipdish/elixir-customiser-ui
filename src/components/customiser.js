@@ -12,22 +12,31 @@ import FontPicker from "./FontPicker"
 
 function Customiser() {
     const [open, setOpen] = useState(true)
-    const [selectedTemplate, setSelectedTemplate] = useState('cafeshirley')
+    const [loading, setLoading] = useState(false)
+    const [selectedTemplate, setSelectedTemplate] = useState()
 
-    useEffect(() => {
-        if (open && selectedTemplate) {
-            // Remove old stylesheets
-            var oldCSS = document.getElementById("elixirTemplate")
-            if(oldCSS) oldCSS.parentNode.removeChild(oldCSS)
+    /**
+     * handleTemplateChange() - Handle changing templates
+     */
+    function handleTemplateChange(newTemplate) {
+        setLoading(true)
 
-            // Add new stylesheets
-            var newCSS = document.createElement("link")
-            newCSS.id = "elixirTemplate"
-            newCSS.rel = "stylesheet"
-            newCSS.href = elixirs[selectedTemplate].css
-            document.head.appendChild(newCSS)
-        }
-    })
+        // Remove old stylesheets
+        var oldCSS = document.getElementById("elixirTemplate")
+        if (oldCSS) oldCSS.parentNode.removeChild(oldCSS)
+
+        // Add new stylesheets
+        var newCSS = document.createElement("link")
+        newCSS.id = "elixirTemplate"
+        newCSS.rel = "stylesheet"
+        newCSS.href = elixirs[newTemplate].css
+        document.head.appendChild(newCSS)
+
+        setTimeout(() => {
+            setSelectedTemplate(newTemplate)
+            setLoading(false)
+        }, 1000)
+    }
 
     // Format Elixir List
     const { elixirs } = config
@@ -48,11 +57,11 @@ function Customiser() {
                 <SectionHeader>Template</SectionHeader>
                 <Select
                     options={options}
-                    onChange={(temp) => setSelectedTemplate(temp.value)}
+                    onChange={(temp) => handleTemplateChange(temp.value)}
                     className="fd_ec_select"
                 />
 
-                {selectedTemplate ? (
+                {loading ? 'Loading...' : selectedTemplate ? (
                     <>
                         <SectionHeader>Colours</SectionHeader>
                         {elixirs[selectedTemplate].settings.colours.map(
@@ -74,7 +83,8 @@ function Customiser() {
                             (setting) => (
                                 <>
                                     <FontPicker
-                                        settings={setting}
+                                        setting={setting}
+                                        ket={setting.variable}
                                     />
                                 </>
                             )
