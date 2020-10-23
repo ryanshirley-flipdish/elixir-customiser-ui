@@ -27,7 +27,6 @@ function FontPicker(props) {
         return getComputedStyle(document.documentElement)
             .getPropertyValue(`--${setting.variable}`)
             .replaceAll('"', "")
-            .substring(1)
     }
 
     /**
