@@ -16,7 +16,7 @@ export default {
                     },
                     {
                         name: 'Main Background Alternate',
-                        variable: 'main-bg-color=alternate',
+                        variable: 'main-bg-color-alternate',
                         forceRGB: false,
                         description: 'This changes X.',
                     },
