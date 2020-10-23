@@ -84,7 +84,7 @@ function Customiser() {
                                 <>
                                     <FontPicker
                                         setting={setting}
-                                        ket={setting.variable}
+                                        key={setting.variable}
                                     />
                                 </>
                             )
