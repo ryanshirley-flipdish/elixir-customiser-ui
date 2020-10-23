@@ -61,32 +61,27 @@ function Customiser() {
                     className="fd_ec_select"
                 />
 
-                {loading ? 'Loading...' : selectedTemplate ? (
+                {loading ? (
+                    "Loading..."
+                ) : selectedTemplate ? (
                     <>
                         <SectionHeader>Colours</SectionHeader>
                         {elixirs[selectedTemplate].settings.colours.map(
                             (setting) => (
-                                <>
-                                    <ColourPicker
-                                        variable={setting.variable}
-                                        title={setting.name}
-                                        key={setting.variable}
-                                        forceRGB={setting.forceRGB}
-                                    />
-                                    <small>{setting.description}</small>
-                                </>
+                                <ColourPicker
+                                    setting={setting}
+                                    key={setting.variable}
+                                />
                             )
                         )}
 
                         <SectionHeader>Fonts</SectionHeader>
                         {elixirs[selectedTemplate].settings.fonts.map(
                             (setting) => (
-                                <>
-                                    <FontPicker
-                                        setting={setting}
-                                        key={setting.variable}
-                                    />
-                                </>
+                                <FontPicker
+                                    setting={setting}
+                                    key={setting.variable}
+                                />
                             )
                         )}
                     </>

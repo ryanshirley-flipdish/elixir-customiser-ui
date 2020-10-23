@@ -3,6 +3,7 @@ import PropTypes from "prop-types"
 import { ChromePicker } from "react-color"
 
 function ColourPicker(props) {
+    const { setting } = props
     const [display, setDisplay] = useState(false)
     const [colour, setColour] = useState()
     const blackRgb = {
@@ -16,7 +17,7 @@ function ColourPicker(props) {
         if (!colour) {
             const c = getComputedStyle(
                 document.documentElement
-            ).getPropertyValue(`--${props.variable}`)
+            ).getPropertyValue(`--${setting.variable}`)
 
             setColour(c)
 
@@ -24,7 +25,7 @@ function ColourPicker(props) {
                 // No colour value set
                 setRgb(blackRgb)
             } else {
-                if (!props.forceRGB) {
+                if (!setting.forceRGB) {
                     // Hex
                     const srgb = hexToRgb(c)
                     setRgb(srgb ? srgb : blackRgb)
@@ -43,7 +44,7 @@ function ColourPicker(props) {
                 }
             }
         }
-    }, [colour, props.variable])
+    }, [colour, setting.variable])
 
     /**
      * handleChangeComplete() Handle Colour picked event
@@ -53,14 +54,14 @@ function ColourPicker(props) {
         setColour(color.hex)
         setRgb(color.rgb)
 
-        if (props.forceRGB) {
+        if (setting.forceRGB) {
             document.documentElement.style.setProperty(
-                `--${props.variable}`,
+                `--${setting.variable}`,
                 `rgb(${color.rgb.r},${color.rgb.g},${color.rgb.b})`
             )
         } else {
             document.documentElement.style.setProperty(
-                `--${props.variable}`,
+                `--${setting.variable}`,
                 color.hex
             )
         }
@@ -82,7 +83,7 @@ function ColourPicker(props) {
 
     return (
         <div className="fd_ec_colour_picker">
-            <p className="name">{props.title}</p>
+            <p className="name">{setting.name}</p>
 
             <div
                 className="fd_ec_colour_swatch"
@@ -104,6 +105,8 @@ function ColourPicker(props) {
                     />
                 </div>
             ) : null}
+
+            <small>{setting.description}</small>
         </div>
     )
 }
@@ -111,7 +114,10 @@ function ColourPicker(props) {
 export default ColourPicker
 
 ColourPicker.propTypes = {
-    variable: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    forceRGB: PropTypes.bool.isRequired,
+    setting: PropTypes.exact({
+        name: PropTypes.string.isRequired,
+        variable: PropTypes.string.isRequired,
+        description: PropTypes.string.isRequired,
+        forceRGB: PropTypes.bool.isRequired,
+    }).isRequired,
 }
