@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { useState } from "react"
 import config from "../config"
 
 // Styling
@@ -35,7 +35,7 @@ function Customiser() {
         setTimeout(() => {
             setSelectedTemplate(newTemplate)
             setLoading(false)
-        }, 1000)
+        }, 500)
     }
 
     // Format Elixir List
