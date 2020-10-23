@@ -32,12 +32,12 @@
 .fd_ec_body {
     background: #F8F8F8;
     height: 0;
-    padding: 0 $spacer * 2;
+    padding: 0 $spacer * 4;
     transition: all 1s ease;
 
     &.fd_ec_body_open {
-        height: 600px;
-        padding: $spacer * 3 $spacer * 2;
+        height: 70vh;
+        padding: $spacer * 4 $spacer * 4 $spacer * 10;
         overflow-y: scroll;
     }
 }
