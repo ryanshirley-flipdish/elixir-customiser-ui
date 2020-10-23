@@ -38,5 +38,6 @@
     &.fd_ec_body_open {
         height: 600px;
         padding: $spacer * 3 $spacer * 2;
+        overflow-y: scroll;
     }
 }
