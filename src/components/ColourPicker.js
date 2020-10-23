@@ -14,7 +14,7 @@ function ColourPicker(props) {
                 )
             )
         }
-    })
+    }, [colour, props.variable])
 
     /**
      * handleChangeComplete() Handle Colour picked event
