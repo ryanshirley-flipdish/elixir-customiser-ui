@@ -1,6 +1,6 @@
 export default {
     /**
-     * Elixir Templates - CSS & JS
+     * Elixir Templates - CSS & JS + Settings
      */
     elixirs: {
         cafeshirley: {
@@ -50,6 +50,20 @@ export default {
                         forceRGB: false,
                         description: 'This changes X.',
                     },
+                ],
+                fonts: [
+                    {
+                        name: 'Headings',
+                        variable: 'heading-font',
+                        type: 'heading',
+                        description: 'This changes X.',
+                    },
+                    {
+                        name: 'Body',
+                        variable: 'main-font',
+                        type: 'body',
+                        description: 'This changes X.',
+                    }
                 ]
             }
         },
@@ -160,4 +174,15 @@ export default {
             }
         }
     },
+    /**
+     * Recommended Fonts
+     */
+    fonts: {
+        heading: [
+            "Libre Baskerville", "Knewave", "Montserrat"
+        ],
+        body: [
+            "Josefin Sans", "Roboto"
+        ]
+    }
 }

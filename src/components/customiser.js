@@ -8,10 +8,11 @@ import "../scss/App.scss"
 import Select from "react-select"
 import SectionHeader from "./SectionHeader"
 import ColourPicker from "./ColourPicker"
+import FontPicker from "./FontPicker"
 
 function Customiser() {
-    const [open, setOpen] = useState(false)
-    const [selectedTemplate, setSelectedTemplate] = useState()
+    const [open, setOpen] = useState(true)
+    const [selectedTemplate, setSelectedTemplate] = useState('cafeshirley')
 
     useEffect(() => {
         if (open && selectedTemplate) {
@@ -64,6 +65,17 @@ function Customiser() {
                                         forceRGB={setting.forceRGB}
                                     />
                                     <small>{setting.description}</small>
+                                </>
+                            )
+                        )}
+
+                        <SectionHeader>Fonts</SectionHeader>
+                        {elixirs[selectedTemplate].settings.fonts.map(
+                            (setting) => (
+                                <>
+                                    <FontPicker
+                                        settings={setting}
+                                    />
                                 </>
                             )
                         )}
