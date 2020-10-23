@@ -6,23 +6,68 @@ import Select from "react-select"
 import config from "../config"
 
 function FontPicker(props) {
-    const availableFonts = props.settings.type === 'heading' ? config.fonts.heading : config.fonts.body
-    const options = availableFonts.map(font => {
-        return {
-            value: font,
-            label: font,
-        }
-    })
+    const { setting } = props,
+        availableFonts =
+            setting.type === "heading"
+                ? config.fonts.heading
+                : config.fonts.body,
+        options = availableFonts.map((font) => {
+            return {
+                value: font,
+                label: font,
+            }
+        })
+    // const [display, setDisplay] = useState(false)
+    const [font, setFont] = useState(getFont)
+
+    /**
+     * getFont() Returns font
+     */
+    function getFont() {
+        return getComputedStyle(document.documentElement)
+            .getPropertyValue(`--${setting.variable}`)
+            .replaceAll('"', "")
+            .substring(1)
+    }
+
+    /**
+     * handleFontChange() Handle font change event
+     */
+    function handleFontChange(font) {
+        // Remove font from google fonts
+        var oldFont = document.getElementById(`fd-ec-${setting.variable}`)
+        if (oldFont) oldFont.parentNode.removeChild(oldFont)
+
+        // Add new font
+        var newCSS = document.createElement("link")
+        newCSS.id = `fd-ec-${setting.variable}`
+        newCSS.rel = "stylesheet"
+        newCSS.href = `https://fonts.googleapis.com/css2?family=${font.replaceAll(' ', '+')}&display=swap`
+        document.head.appendChild(newCSS)
+
+        // Set colour state & root variable
+        setFont(font)
+
+        document.documentElement.style.setProperty(
+            `--${setting.variable}`,
+            `"${font}"`
+        )
+    }
 
     return (
         <div className="fd_ec_font_picker">
-            <p className="name">{props.settings.name}</p>
+            <p className="name">{setting.name}</p>
 
             <Select
                 options={options}
+                defaultValue={{
+                    label: font,
+                    value: font,
+                }}
+                onChange={(font) => handleFontChange(font.value)}
                 className="fd_ec_select"
             />
-            <small>{props.settings.description}</small>
+            <small>{setting.description}</small>
         </div>
     )
 }
@@ -30,7 +75,7 @@ function FontPicker(props) {
 export default FontPicker
 
 FontPicker.propTypes = {
-    settings: PropTypes.exact({
+    setting: PropTypes.exact({
         name: PropTypes.string.isRequired,
         variable: PropTypes.string.isRequired,
         type: PropTypes.string.isRequired,

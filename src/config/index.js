@@ -126,7 +126,8 @@ export default {
                         forceRGB: false,
                         description: 'This changes X.',
                     },
-                ]
+                ],
+                fonts: []
             }
         },
         lospolloshermanos: {
@@ -170,7 +171,8 @@ export default {
                         forceRGB: false,
                         description: 'This changes X.',
                     },
-                ]
+                ],
+                fonts: []
             }
         }
     },
