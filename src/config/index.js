@@ -5,7 +5,7 @@ export default {
     elixirs: {
         cafeshirley: {
             label: 'Cafe Shirley',
-            css: 'https://cdn.jsdelivr.net/gh/ryanshirley-flipdish/elixir-templates@development/dist/cafeShirley/production.min.css',
+            css: 'https://cdn.jsdelivr.net/gh/ryanshirley-flipdish/elixir-templates@latest/dist/cafeShirley/production.min.css',
             settings: {
                 colours: [
                     {
@@ -69,7 +69,7 @@ export default {
         },
         pizzacafe: {
             label: 'Pizza Cafe',
-            css: 'https://cdn.jsdelivr.net/gh/ryanshirley-flipdish/elixir-templates@development/dist/pizzaCafe/production.min.css',
+            css: 'https://cdn.jsdelivr.net/gh/ryanshirley-flipdish/elixir-templates@latest/dist/pizzaCafe/production.min.css',
             settings: {
                 colours: [
                     {
@@ -132,7 +132,7 @@ export default {
         },
         lospolloshermanos: {
             label: 'Los Pollos Hermanos',
-            css: 'https://cdn.jsdelivr.net/gh/ryanshirley-flipdish/elixir-templates@development/dist/losPollosHermanos/production.min.css',
+            css: 'https://cdn.jsdelivr.net/gh/ryanshirley-flipdish/elixir-templates@latest/dist/losPollosHermanos/production.min.css',
             settings: {
                 colours: [
                     {
