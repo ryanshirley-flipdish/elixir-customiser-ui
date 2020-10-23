@@ -181,10 +181,10 @@ export default {
      */
     fonts: {
         heading: [
-            "Libre Baskerville", "Knewave", "Montserrat"
+            "Libre Baskerville", "Knewave", "Montserrat", "Playfair Display"
         ],
         body: [
-            "Josefin Sans", "Roboto"
+            "Josefin Sans", "Roboto", "Work Sans", "Poppins", "Rubik", "Fira Sans", "Alegreya Sans"
         ]
     }
 }
