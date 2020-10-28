@@ -5,48 +5,16 @@ import config from "../config"
 import "../scss/App.scss"
 
 // Components
-import Select from "react-select"
 import SectionHeader from "./SectionHeader"
 import ColourPicker from "./pickers/ColourPicker"
+import TemplatePicker from "./pickers/TemplatePicker"
 import FontPicker from "./pickers/FontPicker"
 
 function Customiser() {
     const [open, setOpen] = useState(true)
-    const [loading, setLoading] = useState(false)
     const [selectedTemplate, setSelectedTemplate] = useState()
-
-    /**
-     * handleTemplateChange() - Handle changing templates
-     */
-    function handleTemplateChange(newTemplate) {
-        setLoading(true)
-
-        // Remove old stylesheets
-        var oldCSS = document.getElementById("elixirTemplate")
-        if (oldCSS) oldCSS.parentNode.removeChild(oldCSS)
-
-        // Add new stylesheets
-        var newCSS = document.createElement("link")
-        newCSS.id = "elixirTemplate"
-        newCSS.rel = "stylesheet"
-        newCSS.href = elixirs[newTemplate].css
-        document.head.appendChild(newCSS)
-
-        setTimeout(() => {
-            setSelectedTemplate(newTemplate)
-            setLoading(false)
-        }, 500)
-    }
-
-    // Format Elixir List
+    const [loading, setLoading] = useState(false)
     const { elixirs } = config
-    const options = []
-    for (const [key, elixir] of Object.entries(elixirs)) {
-        options.push({
-            value: key,
-            label: elixir.label,
-        })
-    }
 
     return (
         <>
@@ -55,10 +23,10 @@ function Customiser() {
             </div>
             <div className={"fd_ec_body" + (open ? " fd_ec_body_open" : "")}>
                 <SectionHeader>Template</SectionHeader>
-                <Select
-                    options={options}
-                    onChange={(temp) => handleTemplateChange(temp.value)}
-                    className="fd_ec_select"
+                <TemplatePicker
+                    setSelectedTemplate={setSelectedTemplate}
+                    selectedTemplate={selectedTemplate}
+                    setLoading={setLoading}
                 />
 
                 {loading ? (
