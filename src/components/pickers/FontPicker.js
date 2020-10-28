@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { useState } from "react"
 import PropTypes from "prop-types"
 import Select from "react-select"
 
@@ -17,7 +17,6 @@ function FontPicker(props) {
                 label: font,
             }
         })
-    // const [display, setDisplay] = useState(false)
     const [font, setFont] = useState(getFont)
 
     /**
