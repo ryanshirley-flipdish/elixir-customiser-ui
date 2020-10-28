@@ -9,6 +9,7 @@ import SectionHeader from "./SectionHeader"
 import ColourPicker from "./pickers/ColourPicker"
 import TemplatePicker from "./pickers/TemplatePicker"
 import FontPicker from "./pickers/FontPicker"
+import SaveConfig from "./SaveConfig"
 
 function Customiser() {
     const [open, setOpen] = useState(true)
@@ -52,6 +53,8 @@ function Customiser() {
                                 />
                             )
                         )}
+
+                        <SaveConfig />
                     </>
                 ) : (
                     "No template selected"
