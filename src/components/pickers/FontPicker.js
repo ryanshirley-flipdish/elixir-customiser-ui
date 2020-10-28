@@ -3,7 +3,7 @@ import PropTypes from "prop-types"
 import Select from "react-select"
 
 // Available Font
-import config from "../config"
+import config from "../../config"
 
 function FontPicker(props) {
     const { setting } = props,

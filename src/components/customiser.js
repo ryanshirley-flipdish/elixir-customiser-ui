@@ -7,8 +7,8 @@ import "../scss/App.scss"
 // Components
 import Select from "react-select"
 import SectionHeader from "./SectionHeader"
-import ColourPicker from "./ColourPicker"
-import FontPicker from "./FontPicker"
+import ColourPicker from "./pickers/ColourPicker"
+import FontPicker from "./pickers/FontPicker"
 
 function Customiser() {
     const [open, setOpen] = useState(true)
