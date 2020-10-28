@@ -2,6 +2,7 @@ import React from "react"
 import html2canvas from "html2canvas"
 import { jsPDF } from "jspdf"
 import PropTypes from "prop-types"
+import "jspdf-autotable"
 
 function SaveConfig(props) {
     /**
@@ -13,41 +14,53 @@ function SaveConfig(props) {
 
         // Create PDF
         const imgData = canvas.toDataURL("image/png")
-        const pdf = new jsPDF()
+        const pdf = new jsPDF({ orientation: "l" })
 
         // Add Screenshot to PDF
         const imgProps = pdf.getImageProperties(imgData)
         const pdfWidth = pdf.internal.pageSize.getWidth()
-        const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width
-        pdf.addImage(imgData, "PNG", 0, 0, pdfWidth, pdfHeight)
+        const imageResizedHeight = (imgProps.height * pdfWidth) / imgProps.width
+        pdf.addImage(imgData, "PNG", 0, 0, pdfWidth, imageResizedHeight)
 
-        // Add config
-        pdf.setFontSize("12")
-        pdf.text(getConfig(), 10, 100, { align: "left", maxWidth: 100 })
+        // Add second page
+        pdf.addPage("a4", "l")
+
+        // Headings
+        pdf.setFontSize("18")
+        pdf.text(`Config: ${props.template.label}`, 15, 20)
+        pdf.setFontSize("8")
+        pdf.text("Flipdish staff use only", 15, 25)
+
+        // Config Table
+        pdf.autoTable({
+            head: [["Property", "Value"]],
+            body: getConfig(),
+            startY: 30,
+            tableWidth: 100,
+        })
 
         // Save PDF
-        pdf.save("elixir-config.pdf")
+        pdf.save(`elixir-config-${props.template.label.replace(' ', '-')}.pdf`)
     }
 
     /**
      * getConfig() Get CSS root variables
      */
     function getConfig() {
-        let config = {}
+        let config = []
         const { colours, fonts } = props.template.settings
-
 
         // Colours
         colours.forEach((colour) => {
-            config[colour.variable] = getVariable(colour.variable)
+            config.push([colour.variable, getVariable(colour.variable)])
         })
 
         // Fonts
         fonts.forEach((font) => {
-            config[font.variable] = getVariable(font.variable)
+            config.push([font.variable, getVariable(font.variable)])
         })
 
-        return JSON.stringify(config)
+        return config
     }
 
     /**
