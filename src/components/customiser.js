@@ -54,7 +54,7 @@ function Customiser() {
                             )
                         )}
 
-                        <SaveConfig />
+                        <SaveConfig template={elixirs[selectedTemplate]} />
                     </>
                 ) : (
                     "No template selected"

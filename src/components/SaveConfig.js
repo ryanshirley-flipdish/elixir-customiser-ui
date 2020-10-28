@@ -1,23 +1,62 @@
 import React from "react"
 import html2canvas from "html2canvas"
+import { jsPDF } from "jspdf"
+import PropTypes from "prop-types"
 
-function SaveConfig() {
+function SaveConfig(props) {
     /**
-     * saveConfig() Save Config
+     * save() Save Config
      */
-    function saveConfig() {
-        html2canvas(document.body).then(function (canvas) {
-            var image = canvas
-                .toDataURL("image/png")
-                .replace("image/png", "image/octet-stream")
+    async function save() {
+        // Get Screenshot
+        const canvas = await html2canvas(document.body)
 
-                console.log(image);
+        // Create PDF
+        const imgData = canvas.toDataURL("image/png")
+        const pdf = new jsPDF()
 
-            // var a = document.createElement("a")
-            // a.setAttribute("download", "elixir-screenshot.png")
-            // a.setAttribute("href", image)
-            // a.click()
+        // Add Screenshot to PDF
+        const imgProps = pdf.getImageProperties(imgData)
+        const pdfWidth = pdf.internal.pageSize.getWidth()
+        const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width
+        pdf.addImage(imgData, "PNG", 0, 0, pdfWidth, pdfHeight)
+
+        // Add config
+        pdf.setFontSize("12")
+        pdf.text(getConfig(), 10, 100, { align: "left", maxWidth: 100 })
+
+        // Save PDF
+        pdf.save("elixir-config.pdf")
+    }
+
+    /**
+     * getConfig() Get CSS root variables
+     */
+    function getConfig() {
+        let config = {}
+        const { colours, fonts } = props.template.settings
+
+
+        // Colours
+        colours.forEach((colour) => {
+            config[colour.variable] = getVariable(colour.variable)
         })
+
+        // Fonts
+        fonts.forEach((font) => {
+            config[font.variable] = getVariable(font.variable)
+        })
+
+        return JSON.stringify(config)
+    }
+
+    /**
+     * getVariable() Get CSS variable
+     */
+    function getVariable(variable) {
+        return getComputedStyle(document.documentElement).getPropertyValue(
+            `--${variable}`
+        )
     }
 
     return (
@@ -25,9 +64,13 @@ function SaveConfig() {
             <hr />
             <div id="fd_ec_preview"></div>
 
-            <button onClick={saveConfig}>Save Screenshot</button>
+            <button onClick={save}>Save Screenshot</button>
         </div>
     )
 }
 
 export default SaveConfig
+
+SaveConfig.propTypes = {
+    template: PropTypes.object.isRequired,
+}
