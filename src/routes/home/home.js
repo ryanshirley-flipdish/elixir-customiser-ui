@@ -1,6 +1,6 @@
 import React from "react"
 
-import Customiser from "../../components/customiser"
+import Customiser from "../../components/Customiser"
 
 function home() {
     return (
