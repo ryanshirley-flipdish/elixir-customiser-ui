@@ -40,7 +40,7 @@ function SaveConfig(props) {
         })
 
         // Save PDF
-        pdf.save(`elixir-config-${props.template.label.replace(' ', '-')}.pdf`)
+        pdf.save(`elixir-config-${props.template.label.replace(" ", "-")}.pdf`)
     }
 
     /**
@@ -52,12 +52,12 @@ function SaveConfig(props) {
 
         // Colours
         colours.forEach((colour) => {
-            config.push([colour.variable, getVariable(colour.variable)])
+            config.push([`--${colour.variable}`, getVariable(colour.variable)])
         })
 
         // Fonts
         fonts.forEach((font) => {
-            config.push([font.variable, getVariable(font.variable)])
+            config.push([`--${font.variable}`, getVariable(font.variable)])
         })
 
         return config
